@@ -67,12 +67,7 @@ public pinUnpinNote(noteId: number) {
   console.log("service reached with id : " + noteId);
   console.log(`${environment.noteApiUrl}` +"/" +noteId +`${environment.pinNoteUrl}`);
   return this.httpService
-    .patchMethod(`${environment.noteApiUrl}` +"/" +noteId +`${environment.pinNoteUrl}`,"",this.httpOptions)
-    .pipe(
-      tap(() => {
-        this.subject.next();
-      })
-    );
+    .patchMethod(`${environment.noteApiUrl}` +"/" +noteId +`${environment.pinNoteUrl}`,"",this.httpOptions);
 }
 
 
