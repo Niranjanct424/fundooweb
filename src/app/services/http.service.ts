@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
+  httpOptions(arg0: string, arg1: {}, httpOptions: any) {
+    throw new Error("Method not implemented.");
+  }
 
   constructor(private http:HttpClient) { }
 
@@ -20,5 +24,8 @@ export class HttpService {
 
   public get(url :any,options :any):any{
     return this.http.get(url,options);
+  }
+  public patchMethod(url: any, body: any, options: any): Observable<any> {
+    return this.http.patch(url, body, options);
   }
 }

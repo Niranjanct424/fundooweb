@@ -22,7 +22,8 @@ export const environment = {
   addColorUrl:'/colour',
   getArchieveUrl:'/fetch/notes/archived',
   getTrashedUrl:'/fetch/notes/trashed',
-  getPinnedNoteUrl:'/fetch/notes/pinned'
+  getPinnedNoteUrl:'/fetch/notes/pinned',
+  LOGIN_URL: '/login',
 };
 
 /*

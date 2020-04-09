@@ -5,6 +5,8 @@ import {HttpHeaders , HttpClient } from '@angular/common/http';
 import { Observable} from 'rxjs';
 import {Note} from 'src/app/models/note.model';
 import { Subject} from 'rxjs';
+import { BehaviorSubject } from "rxjs";
+import { tap } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +31,7 @@ export class NoteService {
   constructor(private httpService:HttpService , private httpClient:HttpClient) { }
 
   private subject = new Subject<any>();
+  
 
   public get autoRefresh() {
     return this.subject;
@@ -58,5 +61,21 @@ archieveNote(noteId:number){
 trashNote(noteId:number){
   return this.httpService.put(this.noteApiUrl+"/"+noteId+this.trashNoteUrl, "" , this.httpOptions);
 }
+
+
+public pinUnpinNote(noteId: number) {
+  console.log("service reached with id : " + noteId);
+  console.log(`${environment.noteApiUrl}` +"/" +noteId +`${environment.pinNoteUrl}`);
+  return this.httpService
+    .patchMethod(`${environment.noteApiUrl}` +"/" +noteId +`${environment.pinNoteUrl}`,"",this.httpOptions)
+    .pipe(
+      tap(() => {
+        this.subject.next();
+      })
+    );
+}
+
+
+
 
 }
