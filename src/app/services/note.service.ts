@@ -14,6 +14,13 @@ export class NoteService {
   private noteApiUrl = environment.noteApiUrl;
   private createNoteUrl = environment.createNoteUrl;
   private getNotesUrl = environment.getAllNotesUrl;
+  private pinNoteUrl = environment.pinNoteUrl;
+  private archieveNoteUrl = environment.archieveUrl;
+  private trashNoteUrl = environment.trashUrl;
+  private addColorUrl = environment.addColorUrl;
+  private getArchieveNoteUrl = environment.getArchieveUrl;
+  private getTrashedNoteUrl = environment.getTrashedUrl;
+  private getPinnedNoteUrl = environment.getPinnedNoteUrl;
 
   private httpOptions={
     headers: new HttpHeaders ({'content-type':'application/json' ,token: localStorage.getItem("token")})
@@ -36,6 +43,20 @@ return this.httpService.post(this.noteApiUrl+this.createNoteUrl,noteDetail,{head
 getAllNotes(){
   
   return this.httpService.get(this.noteApiUrl+this.getNotesUrl,this.httpOptions);
+}
+
+pinNote(noteId:number)
+{
+  console.log("noteId",noteId);
+  this.httpService.put(this.noteApiUrl+"/"+noteId+this.pinNoteUrl,"",this.httpOptions);
+}
+
+archieveNote(noteId:number){
+  return this.httpService.put(this.noteApiUrl+"/"+noteId+this.archieveNoteUrl , "" , this.httpOptions);
+}
+
+trashNote(noteId:number){
+  return this.httpService.put(this.noteApiUrl+"/"+noteId+this.trashNoteUrl, "" , this.httpOptions);
 }
 
 }
