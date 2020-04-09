@@ -1,0 +1,51 @@
+<div class="login">
+
+    <mat-card class="card">
+    
+        <mat-card-header>
+            
+            <mat-card-title class="title">Login to Fundoo</mat-card-title>
+        </mat-card-header>
+    
+        <div class="content">
+            <mat-card-content>
+    
+
+    
+                  <mat-form-field appearance="outline" class="label">
+                    <mat-label>Email</mat-label> 
+                      <input matInput placeholder="email" type="email" [formControl]="email">
+                      <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
+                  </mat-form-field>
+    
+                  <mat-form-field appearance="outline" class="label">
+                    <mat-label>Password</mat-label> 
+                      <input matInput placeholder="password" [type]="hide ? 'text' : 'password'" [formControl]="password">
+                      <button mat-icon-button matSuffix (click)="hide = !hide" >
+                        <mat-icon>{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                        </button>
+                      <mat-error *ngIf="password.invalid">{{getPasswordErrorMessage()}}</mat-error>
+                  </mat-form-field>
+    
+                  <mat-card-actions>
+                    <button
+                      mat-raised-button
+                      color="primary"
+                      type="submit"
+                      (click)="onSubmit()"
+                      
+                    >
+                      Login
+                    </button>
+                </mat-card-actions>
+
+                <a routerLink="/registration">Create an Account</a> &nbsp;&nbsp;
+                <a routerLink="/forgotPassword">Forgotten Account?</a>
+    
+            </mat-card-content>
+        </div>
+    </mat-card>
+    
+    
+        </div>
+    

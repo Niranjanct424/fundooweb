@@ -1,0 +1,33 @@
+<div class="createnotes" >
+    <mat-card  class="matcard" *ngIf="!open" (click)="openNote()">
+        <input matInput class="input" placeholder="Take a note...">
+        <div class="icon-div">
+            <mat-icon matTooltip="New list">check_box</mat-icon>
+            <mat-icon matTooltip="New note with drawing">brush</mat-icon>
+            <mat-icon matTooltip="New note with image">crop_original</mat-icon>
+        </div>
+    </mat-card>
+
+    <mat-card class="note-matcard"  *ngIf="open"  fxLayout="column">
+        <textarea matInput type="text" placeholder="Title" [formControl]="title"></textarea>
+        <textarea matInput type="text" placeholder="Take a note" [formControl]="description"></textarea>
+        <div class="icons" style="display:flex;flex-direction: row;align-items: center;">
+            <mat-icon matTooltip="Remind me">notifications_none</mat-icon>
+            <mat-icon matTooltip="Collaborator">person_add</mat-icon>
+            <mat-icon matTooltip="Change color">color_lens</mat-icon>
+            <mat-icon matTooltip="Archive">archive</mat-icon>
+            <mat-icon matTooltip="Add image">crop_original</mat-icon>
+            <mat-icon matTooltip="More" >more_vert</mat-icon>
+            <mat-icon matTooltip="Undo" >undo</mat-icon>
+            <mat-icon matTooltip="Redo">redo</mat-icon>
+            
+     
+        <div (click)="open=!open">
+            <button mat-button (click)="onSubmit()" class="close">Close</button> 
+    </div>
+</div>
+   </mat-card>
+   <!-- <div class="display-all-notes">
+    <app-displaynotes></app-displaynotes>
+</div> -->
+    </div>
