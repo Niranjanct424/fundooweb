@@ -15,7 +15,14 @@ export const environment = {
 
   noteApiUrl:'http://localhost:8080/notes',
   createNoteUrl:'/Create',
-  getAllNotesUrl:'/fetch/notes'
+  getAllNotesUrl:'/fetch/notes',
+  pinNoteUrl:'/pin',
+  archieveUrl:'/archieve',
+  trashUrl:'/trash',
+  addColorUrl:'/colour',
+  getArchieveUrl:'/fetch/notes/archived',
+  getTrashedUrl:'/fetch/notes/trashed',
+  getPinnedNoteUrl:'/fetch/notes/pinned'
 };
 
 /*
