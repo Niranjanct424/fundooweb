@@ -33,6 +33,7 @@ import { DisplaynotesComponent } from './components/displaynotes/displaynotes.co
 // import { WorkshopComponent} from  './components/workshop/workshop.component';
 import { NoteComponent } from './components/note/note.component';
 import { from } from 'rxjs';
+import { IconsComponent } from './components/icons/icons.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { from } from 'rxjs';
     CreatenotesComponent,
     DisplaynotesComponent,
     NoteComponent,
+    IconsComponent,
     // WorkshopComponent
     
   ],
