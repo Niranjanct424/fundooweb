@@ -48,11 +48,11 @@ getAllNotes(){
   return this.httpService.get(this.noteApiUrl+this.getNotesUrl,this.httpOptions);
 }
 
-pinNote(noteId:number)
-{
-  console.log("noteId",noteId);
-  this.httpService.put(this.noteApiUrl+"/"+noteId+this.pinNoteUrl,"",this.httpOptions);
-}
+// pinNote(noteId:number)
+// {
+//   console.log("noteId",noteId);
+//   this.httpService.put(this.noteApiUrl+"/"+noteId+this.pinNoteUrl,"",this.httpOptions);
+// }
 
 archieveNote(noteId:number){
   return this.httpService.put(this.noteApiUrl+"/"+noteId+this.archieveNoteUrl , "" , this.httpOptions);
@@ -70,7 +70,9 @@ public pinUnpinNote(noteId: number) {
     .patchMethod(`${environment.noteApiUrl}` +"/" +noteId +`${environment.pinNoteUrl}`,"",this.httpOptions);
 }
 
-
+addColor(noteId:number , color:string){
+  return this.httpService.put(`${this.noteApiUrl}${this.addColorUrl}?noteId=${noteId}&color=${color}`, "" , this.httpOptions);
+}
 
 
 }

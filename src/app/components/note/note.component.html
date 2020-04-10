@@ -28,7 +28,7 @@
                     {{ note.description }}
                 </mat-card-content>
             </div>
-            <div class="note-icon">
+            <!-- <div class="note-icon">
                 <button mat-icon-button>
                     <mat-icon matTooltip="Remind me">notifications_none</mat-icon>
                 </button>
@@ -71,7 +71,26 @@
                   Add label
                 </button>
               </mat-menu>
+            </div> -->
+            <div
+             >
+            <app-icons [note]="note"></app-icons>
             </div>
+            <ng-template #trashedNote>
+              <div class="trashcard">
+                <mat-card-footer>
+                  <button mat-icon-button>
+                    <mat-icon matTooltip="Delete forever">delete_forever</mat-icon>
+                  </button>
+                  <button
+                    mat-icon-button
+                    matTooltip="Restore"
+                  >
+                    <mat-icon>restore_from_trash</mat-icon>
+                  </button>
+                </mat-card-footer>
+              </div>
+            </ng-template>
         </mat-card>
     </div>
 </div>
