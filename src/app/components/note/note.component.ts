@@ -49,19 +49,6 @@ export class NoteComponent implements OnInit {
   ngOnInit() {
   }
 
-//   pinNote()
-//   {
-//   this.noteService.pinNote(this.note.noteId).subscribe(
-//   (response :any) => {
-//     console.log("response : ", response);
-//     this.matSnackBar.open(response['message'], "Ok", { duration: 4000})
-//   },
-//   (error:any)=>{
-//     this.matSnackBar.open("note pinned ", "failed to pin note", {duration:5000})
-//   }
-// );
-  
-// }
 pinned() {
   console.log("note fetched for pinn operation ", this.note);
   this.noteService.pinUnpinNote(this.note.noteId).subscribe(

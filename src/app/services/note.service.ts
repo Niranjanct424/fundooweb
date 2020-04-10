@@ -55,7 +55,7 @@ getAllNotes(){
 // }
 
 archieveNote(noteId:number){
-  return this.httpService.put(this.noteApiUrl+"/"+noteId+this.archieveNoteUrl , "" , this.httpOptions);
+  return this.httpService.put(this.noteApiUrl+this.archieveNoteUrl+"/"+noteId , "" , this.httpOptions);
 }
 
 trashNote(noteId:number){

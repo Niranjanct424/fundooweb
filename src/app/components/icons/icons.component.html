@@ -9,9 +9,12 @@
         <mat-icon matTooltip="Add color">color_lens</mat-icon>
     </button >
     <mat-menu #menu1="matMenu" >
-        <div  fxLayout="row">
-          <div  class="colorsList">
-            <button 
+        <div  *ngFor="let colors of colorsList" fxLayout="row">
+          <div *ngFor="let color of colors" class="colorsList">
+            <button [ngStyle]="{ 'background-color': color.colorCode }"
+            (click)="changeColor(color)"
+            matTooltip="{{ color.name }}"
+            mat-mini-fab
               ></button>
           </div>
         </div>
@@ -33,7 +36,7 @@
     <mat-icon matTooltip="More" [matMenuTriggerFor]="menu">more_vert</mat-icon>
 </button>
 <mat-menu #menu="matMenu">
-    <button mat-menu-item >
+    <button mat-menu-item  (click)="deleteNote()">
       Delete Note
     </button>
     <button mat-menu-item>
