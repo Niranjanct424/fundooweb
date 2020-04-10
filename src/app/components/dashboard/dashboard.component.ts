@@ -28,4 +28,9 @@ getEmail()
   return localStorage.getItem('email');
 }
 
+onArchive(){
+  this.router.navigate(['/dashboard/displaynote'],{queryParams:{note:'archive'}});
+  
+}
+
 }

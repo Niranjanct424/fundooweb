@@ -1,4 +1,55 @@
-<div class="whole-container">
+<div *ngIf="!trashedNotes && !archiveNotes">
+    <app-createnotes></app-createnotes> 
+    
+    <div *ngIf = "pinnedNotes && pinned.length>0">
+        <div class="label" >PINNED NOTES</div></div>
+        <div class="container"  fxLayout="column wrap" fxLayout.xs="coloum wrap" >
+            <div fxLayout="row wrap" fxLayoutGap="10px" >
+        <div *ngFor="let note of pinned">
+            <app-note [note]="note"></app-note>
+        </div>
+        </div>
+        </div>
+    
+    </div>
+            <div *ngIf="archiveNotes"></div>
+            <div *ngIf="trashedNotes"></div>
+            <div *ngIf="!trashedNotes && !archiveNotes">
+                <div *ngIf="pinned.length>0">
+            <div class="label" >OTHERS</div></div></div>
+    
+            <div class="container"  fxLayout="column wrap" fxLayout.xs="coloum wrap" >
+        <div fxLayout="row wrap" fxLayoutGap="10px" >
+    <div *ngFor="let note of notes">
+        <app-note [note]="note"></app-note>
+    </div>
+    </div>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <div class="whole-container">
     <app-createnotes></app-createnotes> 
     <div class="container"  fxLayout="column wrap" fxLayout.xs="coloum wrap" >
         <div fxLayout="row wrap" fxLayoutGap="10px" >
@@ -7,4 +58,4 @@
     </div>
     </div>
     </div>
-</div>
+</div> -->

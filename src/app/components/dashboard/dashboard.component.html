@@ -79,7 +79,7 @@
         <mat-sidenav class="matSidenav" #sidenav mode="side">
 
             <div>
-                <button mat-button class="navbutton">
+                <button mat-button class="navbutton" [routerLink]="['/dashboard']">
                   <mat-icon class ="sidenav-icon">lightbulb_outline</mat-icon>
                    <span class= "icon-label">Notes</span>
                    </button>
@@ -105,13 +105,13 @@
     <mat-divider class="divider"></mat-divider>
 
     <div>
-        <button mat-button class="navbutton">
+        <button mat-button class="navbutton" (click)="onArchive()">
            <mat-icon class ="sidenav-icon">archive</mat-icon>
            <span class="icon-label">Archive</span>
           </button>
     </div>
     <div >
-        <button mat-button class="navbutton">
+        <button mat-button class="navbutton" (click)="onTrash()">
           <mat-icon class ="sidenav-icon">delete</mat-icon>
           <span class= "icon-label">Trash</span>
           </button>

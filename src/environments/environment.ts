@@ -19,7 +19,7 @@ export const environment = {
   pinNoteUrl:'/pin',
   archieveUrl:'/archieve',
   trashUrl:'/trash',
-  addColorUrl:'/color',
+  addColorUrl:'/color/',
   getArchieveUrl:'/fetch/notes/archived',
   getTrashedUrl:'/fetch/notes/trashed',
   getPinnedNoteUrl:'/fetch/notes/pinned',

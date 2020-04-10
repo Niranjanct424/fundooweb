@@ -71,8 +71,21 @@ public pinUnpinNote(noteId: number) {
 }
 
 addColor(noteId:number , color:string){
-  return this.httpService.put(`${this.noteApiUrl}${this.addColorUrl}?noteId=${noteId}&color=${color}`, "" , this.httpOptions);
+  return this.httpService.put(`${this.noteApiUrl}${this.addColorUrl}?color=${color}&noteId=${noteId}`, "" , this.httpOptions);
+}                                                                                                                      
+
+getArchieveNotes()
+{
+  return this.httpService.get(this.noteApiUrl+this.getArchieveNoteUrl,this.httpOptions);
 }
 
+getTrashedNotes()
+{
+  return this.httpService.get(this.noteApiUrl+this.getTrashedNoteUrl,this.httpOptions);
+}
 
+getPinnedNotes()
+{
+  return this.httpService.get(this.noteApiUrl+this.getPinnedNoteUrl , this.httpOptions);
+}
 }
