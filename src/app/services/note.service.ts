@@ -55,11 +55,11 @@ getAllNotes(){
 // }
 
 archieveNote(noteId:number){
-  return this.httpService.put(this.noteApiUrl+this.archieveNoteUrl+"/"+noteId , "" , this.httpOptions);
+  return this.httpService.put(this.noteApiUrl+this.archieveNoteUrl+noteId, "" , this.httpOptions);
 }
 
 trashNote(noteId:number){
-  return this.httpService.put(this.noteApiUrl+"/"+noteId+this.trashNoteUrl, "" , this.httpOptions);
+  return this.httpService.put(`${environment.noteApiUrl}` +"/" +noteId +`${environment.trashUrl}`,"",this.httpOptions);
 }
 
 
