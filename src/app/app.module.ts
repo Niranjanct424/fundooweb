@@ -30,7 +30,6 @@ import { UserVerificationComponent } from './components/user-verification/user-v
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CreatenotesComponent } from './components/createnotes/createnotes.component';
 import { DisplaynotesComponent } from './components/displaynotes/displaynotes.component';
-// import { WorkshopComponent} from  './components/workshop/workshop.component';
 import { NoteComponent } from './components/note/note.component';
 import { from } from 'rxjs';
 import { IconsComponent } from './components/icons/icons.component';
@@ -49,7 +48,6 @@ import { IconsComponent } from './components/icons/icons.component';
     DisplaynotesComponent,
     NoteComponent,
     IconsComponent,
-    // WorkshopComponent
     
   ],
   imports: [
