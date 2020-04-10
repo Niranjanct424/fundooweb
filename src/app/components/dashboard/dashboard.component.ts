@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { NoteService } from 'src/app/services/note.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,11 +11,10 @@ import { CommonModule } from '@angular/common';
 export class DashboardComponent implements OnInit {
 
   value= '';
-  constructor(private router:Router) { }
+  constructor(private router:Router,private noteService:NoteService) { }
 
   ngOnInit() {
   }
-
 
 
 onClick()
@@ -28,9 +28,20 @@ getEmail()
   return localStorage.getItem('email');
 }
 
-onArchive(){
-  this.router.navigate(['/dashboard/displaynote'],{queryParams:{note:'archive'}});
-  
-}
+  refresh() 
+  {
+    console.log("reloading");
+    window.location.reload();
+  }
+
+  onArchive()
+  {
+    this.router.navigate(['/dashboard/displaynote'],{queryParams:{note:'archive'}});  
+  }
+
+  onTrash()
+  {
+    this.router.navigate(['dashboard/displaynote'],{queryParams:{note:'trash'}});
+  }
 
 }
