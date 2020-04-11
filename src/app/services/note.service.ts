@@ -20,7 +20,7 @@ export class NoteService {
   private getNotesUrl = environment.getAllNotesUrl;
   private pinNoteUrl = environment.pinNoteUrl;
   private archieveNoteUrl = environment.ARCHIVE_NOTE_URL;
-  private trashNoteUrl = environment.trashUrl;
+  private trashNoteUrl = environment.strashUrl;
   private addColorUrl = environment.addColorUrl;
   private getArchieveNoteUrl = environment.getArchieveUrl;
   private getTrashedNoteUrl = environment.getTrashedUrl;
@@ -59,35 +59,39 @@ getAllNotes(){
 
 
 
-public deleteNote(noteId: number) {
-  console.log("service reached with id : " + noteId);
-  console.log(
-    `${environment.NOTE_API_URL}` +"/" +noteId +`${environment.DELETE_NOTE_URL}`);
-  return this.httpService
-    .deleteMethod(`${environment.NOTE_API_URL}` +"/" +noteId +`${environment.DELETE_NOTE_URL}`,
-    this.httpService.httpOptions)
-    .pipe(
-      tap(() => {
-        this._subject.next();
-      })
-    );
-}
+// public deleteNote(noteId: number) {
+//   console.log("service reached with id : " + noteId);
+//   console.log(
+//     `${environment.NOTE_API_URL}` +"/" +noteId +`${environment.DELETE_NOTE_URL}`);
+//   return this.httpService
+//     .deleteMethod(`${environment.NOTE_API_URL}` +"/" +noteId +`${environment.DELETE_NOTE_URL}`,
+//     this.httpService.httpOptions)
+//     .pipe(
+//       tap(() => {
+//         this._subject.next();
+//       })
+//     );
+// }
 archieveNote(noteId:number){
   return this.httpService.put(this.noteApiUrl+this.archieveNoteUrl+noteId , "" , this.httpOptions);
 }
 
 
-public archiveNote(noteId: number) {
-  console.log("service reached with id : " + noteId);
-  console.log(`${environment.NOTE_API_URL}` +"/" +noteId +`${environment.ARCHIVE_NOTE_URL}`
-);
-  return this.httpService
-    .deleteMethod(`${environment.NOTE_API_URL}` +"/" +noteId +`${environment.ARCHIVE_NOTE_URL}`,this.httpService.httpOptions)
-    .pipe(tap(() => {
-        this._subject.next();
-      })
-    );
-}
+// public archiveNote(noteId: number) {
+//   console.log("service reached with id : " + noteId);
+//   console.log(`${environment.NOTE_API_URL}` +"/" +noteId +`${environment.ARCHIVE_NOTE_URL}`
+// );
+//   return this.httpService
+//     .deleteMethod(`${environment.NOTE_API_URL}` +"/" +noteId +`${environment.ARCHIVE_NOTE_URL}`,this.httpService.httpOptions)
+//     .pipe(tap(() => {
+//         this._subject.next();
+//       })
+//     );
+// }
+
+deleteNotePermanently(noteId:number){
+  return this.httpService.delete(this.noteApiUrl+this.deleteNotePermanentlyUrl+noteId,this.httpOptions);
+  }
 
 trashNote(noteId:number){
   return this.httpService.put(this.noteApiUrl+this.trashNoteUrl+noteId, "" , this.httpOptions);
@@ -126,7 +130,7 @@ getArchieveNotes()
 }
 
 
-getTrashedNotes()
+getTrashedNotes():Observable<any>
 {
   return this.httpService.get(this.noteApiUrl+this.getTrashedNoteUrl,this.httpOptions);
 }

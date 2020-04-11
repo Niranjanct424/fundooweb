@@ -13,11 +13,11 @@
         </div>
     
     </div>
-            <div *ngIf="archiveNotes"></div>
+        <div *ngIf="archiveNotes"></div>
             <div *ngIf="trashedNotes"></div>
-            <div *ngIf="!trashedNotes && !archiveNotes">
-                <div *ngIf="pinned.length>0">
-            <div class="label" >OTHERS</div></div></div>
+                <div *ngIf="!trashedNotes && !archiveNotes">
+                    <div *ngIf="pinned.length>0">
+                    <div class="label" >OTHERS</div></div></div>
     
             <div class="container"  fxLayout="column wrap" fxLayout.xs="coloum wrap" >
         <div fxLayout="row wrap" fxLayoutGap="10px" >
