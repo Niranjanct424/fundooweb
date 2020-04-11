@@ -17,19 +17,18 @@ export const environment = {
   createNoteUrl:'/Create',
   getAllNotesUrl:'/fetch/notes',
   pinNoteUrl:'/pin',
-  trashUrl:'/trash',
+  trashUrl:'/trash/',
   CHANGE_COLOR_NOTE_URL: "?color=",
-  ARCHIVE_NOTE_URL: "/archive",
+  // archieveUrl:'/archieve/',
+  ARCHIVE_NOTE_URL: "/archieve/",
   DELETE_FOREVER_NOTE_URL: "/delete",
   NOTE_API_URL: "http://localhost:8080/notes",
   getArchieveUrl:'/fetch/notes/archived',
-  getTrashedUrl:'/fetch/notes/trashed',
+  getTrashedUrl:'/fetch/notes/trashed/',
   getPinnedNoteUrl:'/fetch/notes/pinned',
   LOGIN_URL: '/login',
-  DELETE_NOTE_URL:'/delete',
-
-
-
+  DELETE_NOTE_URL:'/delete/',
+  deletePermanentlyUrl:'/getNotesByTitle',
   UPDATE_NOTE_URL: "/update?id=",
   // DELETE_NOTE_URL: "/trash",
 };

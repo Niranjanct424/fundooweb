@@ -21,11 +21,11 @@ export class NoteService {
   private pinNoteUrl = environment.pinNoteUrl;
   private archieveNoteUrl = environment.ARCHIVE_NOTE_URL;
   private trashNoteUrl = environment.trashUrl;
-  private addColorUrl = environment.CHANGE_COLOR_NOTE_URL;
+  private addColorUrl = environment.addColorUrl;
   private getArchieveNoteUrl = environment.getArchieveUrl;
   private getTrashedNoteUrl = environment.getTrashedUrl;
   private getPinnedNoteUrl = environment.getPinnedNoteUrl;
-  private deleteNotePermanentlyUrl =environment.DELETE_FOREVER_NOTE_URL;
+  private deleteNotePermanentlyUrl = environment.deletePermanentlyUrl;
 
   private httpOptions={
     headers: new HttpHeaders ({'content-type':'application/json' ,token: localStorage.getItem("token")})
@@ -72,6 +72,9 @@ public deleteNote(noteId: number) {
       })
     );
 }
+archieveNote(noteId:number){
+  return this.httpService.put(this.noteApiUrl+this.archieveNoteUrl+noteId , "" , this.httpOptions);
+}
 
 
 public archiveNote(noteId: number) {
@@ -87,7 +90,7 @@ public archiveNote(noteId: number) {
 }
 
 trashNote(noteId:number){
-  return this.httpService.put(`${environment.noteApiUrl}` +"/" +noteId +`${environment.trashUrl}`,"",this.httpOptions);
+  return this.httpService.put(this.noteApiUrl+this.trashNoteUrl+noteId, "" , this.httpOptions);
 }
 
 
@@ -99,21 +102,23 @@ public pinUnpinNote(noteId: number) {
 }
 
 addColor(noteId:number , color:string){
-  return this.httpService.put(`${this.noteApiUrl}${this.addColorUrl}?color=${color}&noteId=${noteId}`, "" , this.httpOptions);
+  // var params = { color: colors };
+  // var config = { params: params };
+  return this.httpService.put(`${this.noteApiUrl}${this.addColorUrl}?noteId=${noteId}&color=${color}`, "" , this.httpOptions);
 }
 
-public changeColorOfNote(noteId: number, color: string) {
-  console.log("service reached with id : " + noteId);
-  console.log(`${environment.NOTE_API_URL}` +"/" +noteId +`${environment.CHANGE_COLOR_NOTE_URL}${color}`);
-  return this.httpService
-    .patchMethod(`${environment.NOTE_API_URL}` +"/" +noteId +`${environment.CHANGE_COLOR_NOTE_URL}${color}`,{},
-      this.httpService.httpOptions)
-    .pipe(
-      tap(() => {
-        this._subject.next();
-      })
-    );
-}
+// public changeColorOfNote(noteId: number, color: string) {
+//   console.log("service reached with id : " + noteId);
+//   console.log(`${environment.NOTE_API_URL}` +"/" +noteId +`${environment.CHANGE_COLOR_NOTE_URL}${color}`);
+//   return this.httpService
+//     .patchMethod(`${environment.NOTE_API_URL}` +"/" +noteId +`${environment.CHANGE_COLOR_NOTE_URL}${color}`,{},
+//       this.httpService.httpOptions)
+//     .pipe(
+//       tap(() => {
+//         this._subject.next();
+//       })
+//     );
+// }
 
 getArchieveNotes()
 {

@@ -45,8 +45,9 @@
                     <mat-icon matTooltip="Delete forever">delete_forever</mat-icon>
                   </button>
                   <button
-                    mat-icon-button
-                    matTooltip="Restore"
+                  mat-icon-button
+                  matTooltip="Restore"
+                  (click)="deleteNote()"
                   >
                     <mat-icon>restore_from_trash</mat-icon>
                   </button>

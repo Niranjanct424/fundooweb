@@ -29,7 +29,11 @@ export class HttpService {
     return this.http.patch(url, body, options);
   }
 
-  public deleteMethod(url: string, options: any): Observable<any> {
-    return this.http.delete(url, options);
+  // public deleteMethod(url: string, options: any): Observable<any> {
+  //   return this.http.delete(url, options);
+  // }
+  public delete(url:any,options :any):any{
+    return this.http.delete(url,options);
+    
   }
 }
