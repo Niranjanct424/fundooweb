@@ -20,8 +20,10 @@ export const environment = {
   strashUrl:'/delete/',
   trashUrl:'/trashedNotes',
   addColorUrl:'/addColor/',
-  // archieveUrl:'/archieve/',
   ARCHIVE_NOTE_URL: "/archieve/",
+  // archieveUrl:'/archieve/',
+
+  
   DELETE_FOREVER_NOTE_URL: "/delete",
   NOTE_API_URL: "http://localhost:8080/notes",
   getArchieveUrl:'/fetch/notes/archived',
@@ -29,7 +31,7 @@ export const environment = {
   getPinnedNoteUrl:'/fetch/notes/pinned',
   LOGIN_URL: '/login',
   DELETE_NOTE_URL:'/delete/',
-  deletePermanentlyUrl:'/getNotesByTitle',
+  deletePermanentlyUrl:'/deletePermanently/',
   UPDATE_NOTE_URL: "/update?id=",
   // DELETE_NOTE_URL: "/trash",
 };

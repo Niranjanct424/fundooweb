@@ -17,13 +17,14 @@ export class NoteService {
 
   private noteApiUrl = environment.noteApiUrl;
   private createNoteUrl = environment.createNoteUrl;
-  private getNotesUrl = environment.getAllNotesUrl;
+ 
   private pinNoteUrl = environment.pinNoteUrl;
   private archieveNoteUrl = environment.ARCHIVE_NOTE_URL;
   private trashNoteUrl = environment.strashUrl;
   private addColorUrl = environment.addColorUrl;
   private getArchieveNoteUrl = environment.getArchieveUrl;
   private getTrashedNoteUrl = environment.getTrashedUrl;
+  private getNotesUrl = environment.getAllNotesUrl;
   private getPinnedNoteUrl = environment.getPinnedNoteUrl;
   private deleteNotePermanentlyUrl = environment.deletePermanentlyUrl;
 
