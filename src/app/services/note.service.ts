@@ -102,7 +102,31 @@ public pinUnpinNote(noteId: number) {
 
 addColor(noteId:number , color:string){
   return this.httpService.put(`${this.noteApiUrl}${this.addColorUrl}?color=${color}&noteId=${noteId}`, "" , this.httpOptions);
-}                                                                                                                      
+}
+
+public changeColorOfNote(noteId: number, color: string) {
+  console.log("service reached with id : " + noteId);
+  console.log(
+    `${environment.NOTE_API_URL}` +
+      "/" +
+      noteId +
+      `${environment.CHANGE_COLOR_NOTE_URL}${color}`
+  );
+  return this.httpService
+    .patchMethod(
+      `${environment.NOTE_API_URL}` +
+        "/" +
+        noteId +
+        `${environment.CHANGE_COLOR_NOTE_URL}${color}`,
+      {},
+      this.httpService.httpOptions
+    )
+    .pipe(
+      tap(() => {
+        this._subject.next();
+      })
+    );
+}
 
 getArchieveNotes()
 {
