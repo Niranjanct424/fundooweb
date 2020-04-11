@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { Note } from 'src/app/models/note.model';
 import { MatSnackBar } from '@angular/material/snack-bar';

@@ -3,6 +3,9 @@ import { Component, OnInit ,Input} from '@angular/core';
 import { Note } from 'src/app/models/note.model';
 import { NoteService } from 'src/app/services/note.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from "@angular/material";
+import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-icons',
@@ -14,7 +17,12 @@ export class IconsComponent implements OnInit {
   @Input() note: Note;
 
   constructor(private noteService:NoteService,
-    private matSnackBar: MatSnackBar) { }
+    private matSnackBar: MatSnackBar,
+    private _matSnackBar: MatSnackBar,
+    private _router: Router,
+    // private _amazingTimePicker: AmazingTimePickerService,
+    private _matDialog: MatDialog
+    ) { }
 
     colorsList = [
       [
@@ -41,17 +49,54 @@ export class IconsComponent implements OnInit {
       ]
     ]
 
-
   ngOnInit() {
   }
 
   archieveNote()
   {
-      this.noteService.archieveNote(this.note.noteId).subscribe(
+      this.noteService.archiveNote(this.note.noteId).subscribe(
       (response :any) => {
       console.log("response : ", response);
       this.matSnackBar.open(response['message'], "Ok", { duration: 4000})
       });
+  }
+
+  archive() {
+    console.log("note fetched for archive", this.note);
+    this.noteService.archiveNote(this.note.noteId).subscribe(
+      response => {
+        console.log("response : ", response);
+        // archive
+        if (response.statusCode === 200) {
+          this._matSnackBar.open(response.message + " sucessfully", "ok", {
+            duration: 4000
+          });
+          // urarchive
+        } else {
+          this._matSnackBar.open(response.message + " sucessfully", "ok", {
+            duration: 4000
+          });
+        }
+      },
+      errors => {
+        console.log("errors : ", errors);
+        if (errors.error.statusCode === 401) {
+          localStorage.clear();
+          this._router.navigateByUrl(`${environment.LOGIN_URL}`);
+          this._matSnackBar.open(
+            errors.error.message + " , login to continue.",
+            "Opps!",
+            {
+              duration: 5000
+            }
+          );
+        } else {
+          this._matSnackBar.open(errors.error.message, "ok", {
+            duration: 4000
+          });
+        }
+      }
+    );
   }
 
   changeColor(color){
