@@ -28,4 +28,8 @@ export class HttpService {
   public patchMethod(url: any, body: any, options: any): Observable<any> {
     return this.http.patch(url, body, options);
   }
+
+  public deleteMethod(url: string, options: any): Observable<any> {
+    return this.http.delete(url, options);
+  }
 }

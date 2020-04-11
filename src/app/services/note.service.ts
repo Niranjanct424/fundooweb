@@ -7,22 +7,25 @@ import {Note} from 'src/app/models/note.model';
 import { Subject} from 'rxjs';
 import { BehaviorSubject } from "rxjs";
 import { tap } from "rxjs/operators";
+import { Color } from '../models/color.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NoteService {
+  public noteColor: Color;
 
   private noteApiUrl = environment.noteApiUrl;
   private createNoteUrl = environment.createNoteUrl;
   private getNotesUrl = environment.getAllNotesUrl;
   private pinNoteUrl = environment.pinNoteUrl;
-  private archieveNoteUrl = environment.archieveUrl;
+  private archieveNoteUrl = environment.ARCHIVE_NOTE_URL;
   private trashNoteUrl = environment.trashUrl;
-  private addColorUrl = environment.addColorUrl;
+  private addColorUrl = environment.CHANGE_COLOR_NOTE_URL;
   private getArchieveNoteUrl = environment.getArchieveUrl;
   private getTrashedNoteUrl = environment.getTrashedUrl;
   private getPinnedNoteUrl = environment.getPinnedNoteUrl;
+  private deleteNotePermanentlyUrl =environment.DELETE_FOREVER_NOTE_URL;
 
   private httpOptions={
     headers: new HttpHeaders ({'content-type':'application/json' ,token: localStorage.getItem("token")})
@@ -30,11 +33,15 @@ export class NoteService {
 
   constructor(private httpService:HttpService , private httpClient:HttpClient) { }
 
-  private subject = new Subject<any>();
+  // private subject = new Subject<any>();
+  private _notesList = new Subject<any>();
+  private _subject = new Subject<any>();
+  private _content = new BehaviorSubject<number>(0);
+  public share = this._content.asObservable();
   
 
   public get autoRefresh() {
-    return this.subject;
+    return this._subject;
   }
 
 createNote(noteDetail:any):Observable<any>
@@ -48,14 +55,37 @@ getAllNotes(){
   return this.httpService.get(this.noteApiUrl+this.getNotesUrl,this.httpOptions);
 }
 
-// pinNote(noteId:number)
-// {
-//   console.log("noteId",noteId);
-//   this.httpService.put(this.noteApiUrl+"/"+noteId+this.pinNoteUrl,"",this.httpOptions);
-// }
+
 
 archieveNote(noteId:number){
   return this.httpService.put(this.noteApiUrl+this.archieveNoteUrl+noteId, "" , this.httpOptions);
+}
+
+public deleteNote(noteId: number) {
+  console.log("service reached with id : " + noteId);
+  console.log(
+    `${environment.NOTE_API_URL}` +"/" +noteId +`${environment.DELETE_NOTE_URL}`);
+  return this.httpService
+    .deleteMethod(`${environment.NOTE_API_URL}` +"/" +noteId +`${environment.DELETE_NOTE_URL}`,
+    this.httpService.httpOptions)
+    .pipe(
+      tap(() => {
+        this._subject.next();
+      })
+    );
+}
+
+
+public archiveNote(noteId: number) {
+  console.log("service reached with id : " + noteId);
+  console.log(`${environment.NOTE_API_URL}` +"/" +noteId +`${environment.ARCHIVE_NOTE_URL}`
+);
+  return this.httpService
+    .deleteMethod(`${environment.NOTE_API_URL}` +"/" +noteId +`${environment.ARCHIVE_NOTE_URL}`,this.httpService.httpOptions)
+    .pipe(tap(() => {
+        this._subject.next();
+      })
+    );
 }
 
 trashNote(noteId:number){
@@ -79,6 +109,7 @@ getArchieveNotes()
   return this.httpService.get(this.noteApiUrl+this.getArchieveNoteUrl,this.httpOptions);
 }
 
+
 getTrashedNotes()
 {
   return this.httpService.get(this.noteApiUrl+this.getTrashedNoteUrl,this.httpOptions);
@@ -88,4 +119,6 @@ getPinnedNotes()
 {
   return this.httpService.get(this.noteApiUrl+this.getPinnedNoteUrl , this.httpOptions);
 }
+
+
 }

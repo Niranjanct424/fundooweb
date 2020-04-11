@@ -28,14 +28,20 @@
                     {{ note.description }}
                 </mat-card-content>
             </div>
+            
+
+
+
             <div
-             >
+            *ngIf="
+            !note.isTrashed;
+            else trashedNote " >
             <app-icons [note]="note"></app-icons>
             </div>
             <ng-template #trashedNote>
               <div class="trashcard">
                 <mat-card-footer>
-                  <button mat-icon-button>
+                  <button mat-icon-button (click)="deletePermanently()">
                     <mat-icon matTooltip="Delete forever">delete_forever</mat-icon>
                   </button>
                   <button
