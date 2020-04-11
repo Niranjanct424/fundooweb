@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NoteService } from 'src/app/services/note.service';
@@ -10,11 +10,13 @@ import { NoteService } from 'src/app/services/note.service';
 })
 export class DashboardComponent implements OnInit {
 
+title: String;
   value= '';
-  constructor(private router:Router,private noteService:NoteService) { }
+  constructor(private router:Router , private noteService:NoteService) { }
 
   ngOnInit() {
   }
+
 
 
 onClick()
@@ -28,20 +30,22 @@ getEmail()
   return localStorage.getItem('email');
 }
 
-  refresh() 
-  {
-    console.log("reloading");
-    window.location.reload();
-  }
 
-  onArchive()
-  {
-    this.router.navigate(['/dashboard/displaynote'],{queryParams:{note:'archive'}});  
-  }
+refresh() {
+  console.log("reloading");
+window.location.reload();
+}
 
-  onTrash()
-  {
-    this.router.navigate(['dashboard/displaynote'],{queryParams:{note:'trash'}});
-  }
+onArchive(){
+  this.router.navigate(['dashboard/displaynote'],{queryParams:{note:'archive'}});
+  
+}
 
+onTrash(){
+  this.router.navigate(['dashboard/displaynote'],{queryParams:{note:'trash'}});
+}
+
+// searchNote() {
+//   this.noteService.setSearchNoteData(this.title);
+// }
 }
