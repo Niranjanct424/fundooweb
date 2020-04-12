@@ -15,30 +15,6 @@ export class NoteComponent implements OnInit {
   @Input() note: Note;
   isPinned: boolean;
 
-  // colorsList = [
-  //   [
-  //     { 
-  //       colorCode: "rgba(198, 222, 255,1)", name: "Blue" 
-  //     },
-  //     { 
-  //       colorCode: "rgba(229, 228, 226,1)", name: "Gray" 
-  //     },
-  //     { 
-  //       colorCode: "rgba(230, 169, 236,1)", name: "Pink" 
-  //     },
-  //   ],
-  //   [
-  //     { 
-  //       colorCode: "rgba(233, 171, 23,1)", name: "Yellow" 
-  //     },
-  //     { 
-  //       colorCode: "rgba(249, 150, 107,1)", name: "Orange" 
-  //     },
-  //     { 
-  //       colorCode: "rgba(255,255,255,1)", name: "white" 
-  //     },
-  //   ]
-  // ]
 
   constructor(private noteService:NoteService,
     private matSnackBar: MatSnackBar,
@@ -88,6 +64,7 @@ pinned() {
   );
 }
 
+
 deleteNote(){
   this.noteService.trashNote(this.note.noteId).subscribe(
     (response :any) => {
@@ -97,31 +74,13 @@ deleteNote(){
     );
 }
 
-// archieveNote()
-// {
-//   // checking archive note
-//     this.noteService.archiveNote(this.note.noteId).subscribe(
-//     (response :any) => {
-//     console.log("response : ", response);
-//     this.matSnackBar.open(response['message'], "Ok", { duration: 4000})
-//                       });
-// }
 
-changeColor(color){
-  console.log(color.name);
-  this.noteService.addColor(this.note.noteId , color.name).subscribe(
-    response => {
+deletePermanently(){
+  this.noteService.deleteNotePermanently(this.note.noteId).subscribe(
+    (response :any) => {
       console.log("response : ", response);
-      this.matSnackBar.open(response['message'], "ok", {
-        duration: 4000
-      });
+      this.matSnackBar.open(response['message'], "Ok", { duration: 4000})
     }
   );
 }
-
-
-
-
-
-
 }

@@ -17,16 +17,17 @@ export class NoteService {
 
   private noteApiUrl = environment.noteApiUrl;
   private createNoteUrl = environment.createNoteUrl;
- 
   private pinNoteUrl = environment.pinNoteUrl;
-  private archieveNoteUrl = environment.ARCHIVE_NOTE_URL;
-  private trashNoteUrl = environment.strashUrl;
+  private archieveNoteUrl = environment.archieveUrl;
+  private trashNoteUrl = environment.trashUrl;
   private addColorUrl = environment.addColorUrl;
+  private deleteNotePermanentlyUrl = environment.deletePermanentlyUrl;
+
   private getArchieveNoteUrl = environment.getArchieveUrl;
   private getTrashedNoteUrl = environment.getTrashedUrl;
   private getNotesUrl = environment.getAllNotesUrl;
   private getPinnedNoteUrl = environment.getPinnedNoteUrl;
-  private deleteNotePermanentlyUrl = environment.deletePermanentlyUrl;
+  
 
   private httpOptions={
     headers: new HttpHeaders ({'content-type':'application/json' ,token: localStorage.getItem("token")})
@@ -48,7 +49,13 @@ export class NoteService {
 createNote(noteDetail:any):Observable<any>
 {
   console.log("note:",noteDetail);
-return this.httpService.post(this.noteApiUrl+this.createNoteUrl,noteDetail,{headers:new HttpHeaders({'token':localStorage.token})});
+  return this.httpService.post(this.noteApiUrl+this.createNoteUrl,noteDetail,{headers:new HttpHeaders({'token':localStorage.token})});
+}
+
+pinNote(noteId:number)
+{
+  console.log("noteId:"+noteId);
+  return this.httpService.put(this.noteApiUrl+this.pinNoteUrl+noteId,"",this.httpOptions);
 }
 
 getAllNotes(){
@@ -78,28 +85,20 @@ archieveNote(noteId:number){
 }
 
 
-// public archiveNote(noteId: number) {
-//   console.log("service reached with id : " + noteId);
-//   console.log(`${environment.NOTE_API_URL}` +"/" +noteId +`${environment.ARCHIVE_NOTE_URL}`
-// );
-//   return this.httpService
-//     .deleteMethod(`${environment.NOTE_API_URL}` +"/" +noteId +`${environment.ARCHIVE_NOTE_URL}`,this.httpService.httpOptions)
-//     .pipe(tap(() => {
-//         this._subject.next();
-//       })
-//     );
-// }
 
-deleteNotePermanently(noteId:number){
+deleteNotePermanently(noteId:number)
+{
   return this.httpService.delete(this.noteApiUrl+this.deleteNotePermanentlyUrl+noteId,this.httpOptions);
-  }
+}
 
-trashNote(noteId:number){
+trashNote(noteId:number)
+{
   return this.httpService.put(this.noteApiUrl+this.trashNoteUrl+noteId, "" , this.httpOptions);
 }
 
 
-public pinUnpinNote(noteId: number) {
+public pinUnpinNote(noteId: number) 
+{
   console.log("service reached with id : " + noteId);
   console.log(`${environment.noteApiUrl}` +"/" +noteId +`${environment.pinNoteUrl}`);
   return this.httpService
@@ -112,18 +111,6 @@ addColor(noteId:number , color:string){
   return this.httpService.put(`${this.noteApiUrl}${this.addColorUrl}?noteId=${noteId}&color=${color}`, "" , this.httpOptions);
 }
 
-// public changeColorOfNote(noteId: number, color: string) {
-//   console.log("service reached with id : " + noteId);
-//   console.log(`${environment.NOTE_API_URL}` +"/" +noteId +`${environment.CHANGE_COLOR_NOTE_URL}${color}`);
-//   return this.httpService
-//     .patchMethod(`${environment.NOTE_API_URL}` +"/" +noteId +`${environment.CHANGE_COLOR_NOTE_URL}${color}`,{},
-//       this.httpService.httpOptions)
-//     .pipe(
-//       tap(() => {
-//         this._subject.next();
-//       })
-//     );
-// }
 
 getArchieveNotes()
 {

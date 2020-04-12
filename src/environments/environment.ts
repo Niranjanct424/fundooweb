@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  // production: false
+  
   production: true,
 
   userApiUrl:'http://localhost:8080',
@@ -17,23 +17,24 @@ export const environment = {
   createNoteUrl:'/Create',
   getAllNotesUrl:'/fetch/notes',
   pinNoteUrl:'/pin',
-  strashUrl:'/delete/',
-  trashUrl:'/trashedNotes',
+  archieveUrl: "/archieve/",
+  trashUrl:'/delete/',
   addColorUrl:'/addColor/',
-  ARCHIVE_NOTE_URL: "/archieve/",
-  // archieveUrl:'/archieve/',
-
-  
-  DELETE_FOREVER_NOTE_URL: "/delete",
-  NOTE_API_URL: "http://localhost:8080/notes",
   getArchieveUrl:'/fetch/notes/archived',
   getTrashedUrl:'/fetch/notes/trashed/',
   getPinnedNoteUrl:'/fetch/notes/pinned',
+  deletePermanentlyUrl:'/deletePermanently/',
+  searchNoteUrl:'/getNotesByTitle',
+
+  
+  // DELETE_FOREVER_NOTE_URL: "/delete",
+  // NOTE_API_URL: "http://localhost:8080/notes",
+  
+  
   LOGIN_URL: '/login',
   DELETE_NOTE_URL:'/delete/',
-  deletePermanentlyUrl:'/deletePermanently/',
   UPDATE_NOTE_URL: "/update?id=",
-  // DELETE_NOTE_URL: "/trash",
+  
 };
 
 /*

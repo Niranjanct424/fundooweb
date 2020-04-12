@@ -58,7 +58,7 @@ export class DisplaynotesComponent implements OnInit {
         console.log("response", response);
         console.log("notes:",response.object);
         this.others = response['object'];
-         this.others.filter(note=>note.isPinned===false&&note.isArchived===false&&note.isTrashed==false).map(note=>this.notes.push(note));
+         this.others.filter(note=>note.pinned===false&&note.archived===false&&note.trashed==false).map(note=>this.notes.push(note));
       },  
       (error:any)=> {
         this.matSnackBar.open(error.error.message, "failed", {duration:5000})
