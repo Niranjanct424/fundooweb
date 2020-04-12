@@ -15,6 +15,11 @@ import { Color } from '../models/color.model';
 export class NoteService {
   public noteColor: Color;
 
+  private _refreshNeeded$= new Subject<void>();
+  get refreshNeeded$() {
+    return this._refreshNeeded$;
+  }
+
   private noteApiUrl = environment.noteApiUrl;
   private createNoteUrl = environment.createNoteUrl;
   private pinNoteUrl = environment.pinNoteUrl;
@@ -63,23 +68,6 @@ getAllNotes(){
   return this.httpService.get(this.noteApiUrl+this.getNotesUrl,this.httpOptions);
 }
 
-
-
-
-
-// public deleteNote(noteId: number) {
-//   console.log("service reached with id : " + noteId);
-//   console.log(
-//     `${environment.NOTE_API_URL}` +"/" +noteId +`${environment.DELETE_NOTE_URL}`);
-//   return this.httpService
-//     .deleteMethod(`${environment.NOTE_API_URL}` +"/" +noteId +`${environment.DELETE_NOTE_URL}`,
-//     this.httpService.httpOptions)
-//     .pipe(
-//       tap(() => {
-//         this._subject.next();
-//       })
-//     );
-// }
 archieveNote(noteId:number){
   return this.httpService.put(this.noteApiUrl+this.archieveNoteUrl+noteId , "" , this.httpOptions);
 }
@@ -128,5 +116,15 @@ getPinnedNotes()
   return this.httpService.get(this.noteApiUrl+this.getPinnedNoteUrl , this.httpOptions);
 }
 
+// setSearchNoteData(message:any)
+// {
+//   return this.searchNote.next({notes:message});
+// }
+
+// getSearchNotes():Observable<any>
+// {
+//   return this.searchNote.asObservable();
+//   // return this.httpService.get(`${this.noteApiUrl}${this.searchNoteUrl}?title=${this.title}`, this.httpOptions);
+// }
 
 }

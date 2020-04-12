@@ -33,6 +33,7 @@ import { DisplaynotesComponent } from './components/displaynotes/displaynotes.co
 import { NoteComponent } from './components/note/note.component';
 import { from } from 'rxjs';
 import { IconsComponent } from './components/icons/icons.component';
+import { NotePipe } from './pipes/pipes/note.pipe';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { IconsComponent } from './components/icons/icons.component';
     DisplaynotesComponent,
     NoteComponent,
     IconsComponent,
+    NotePipe,
     
   ],
   imports: [
