@@ -44,15 +44,14 @@ export class IconsComponent implements OnInit {
   }
 
   archieveNote()
-{
-this.noteService.archieveNote(this.note.noteId).subscribe(
-(response :any) => {
-  console.log("response : ", response);
-  this.matSnackBar.open(response['message'], "Ok", { duration: 4000})
-}
-);
-
-}
+  {
+    this.noteService.archieveNote(this.note.noteId).subscribe(
+    (response :any) => {
+    console.log("response : ", response);
+    this.matSnackBar.open(response['message'], "Ok", { duration: 4000})
+    });
+  }
+  
 
 deleteNote(){
   this.noteService.trashNote(this.note.noteId).subscribe(

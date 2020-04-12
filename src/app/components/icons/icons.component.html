@@ -23,16 +23,18 @@
   <button mat-icon-button>
       <mat-icon matTooltip="Add image">crop_original</mat-icon>
   </button>
-  <div *ngIf="!note.archieved">
-  <button mat-icon-button (click)="archieveNote()">
-      <mat-icon matTooltip="Archive">archive</mat-icon>
-  </button>
+
+  <div *ngIf="!note.archived">
+    <button mat-icon-button (click)="archieveNote()">
+        <mat-icon matTooltip="Archive">archive</mat-icon>
+    </button>
 </div>
-<div *ngIf="note.archieved">
-  <button mat-icon-button (click)="archieveNote()">
-      <mat-icon matTooltip="unarchive">unarchive</mat-icon>
-  </button>
+<div *ngIf="note.archived">
+    <button mat-icon-button (click)="archieveNote()">
+        <mat-icon matTooltip="unarchive">unarchive</mat-icon>
+    </button>
 </div>
+
   <button mat-icon-button>
   <mat-icon matTooltip="More" [matMenuTriggerFor]="menu">more_vert</mat-icon>
 </button>

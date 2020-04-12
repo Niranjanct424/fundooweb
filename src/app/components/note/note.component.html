@@ -2,7 +2,7 @@
 <div class="container" >
     <div class="mat-display"  >
         <mat-card [ngStyle]="{ 'background-color': note.color }">
-            <div  *ngIf="!note.isPinned" class="pin-div">
+            <div  *ngIf="!note.pinned" class="pin-div">
                 <button mat-icon-button class="pin" (click)="pinned()">
                   <mat-icon matTooltip="pin note">
                     <img src="../../../assets/icons/pin.svg" style="width: 25px;height: 25px;" [ngStyle]="{ 'background-color': note.color }">
@@ -34,7 +34,7 @@
 
             <div
             *ngIf="
-            !note.isTrashed;
+            !note.trashed;
             else trashedNote " >
             <app-icons [note]="note"></app-icons>
             </div>

@@ -8,7 +8,7 @@ export class Note {
     trashed:boolean;
     color:String;
     reminder:String;
-    remainderTime: string;
+    reminderDate: string;
     createdDate: String;
     updatedDate: String;
     userId: number;
