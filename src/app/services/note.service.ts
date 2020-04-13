@@ -32,7 +32,8 @@ export class NoteService {
   private getTrashedNoteUrl = environment.getTrashedUrl;
   private getNotesUrl = environment.getAllNotesUrl;
   private getPinnedNoteUrl = environment.getPinnedNoteUrl;
-  
+  private searchNoteUrl = environment.searchNoteUrl;
+  private title:string;
 
   private httpOptions={
     headers: new HttpHeaders ({'content-type':'application/json' ,token: localStorage.getItem("token")})
@@ -50,6 +51,8 @@ export class NoteService {
   public get autoRefresh() {
     return this._subject;
   }
+
+  private searchNote=new Subject<any>();
 
 createNote(noteDetail:any):Observable<any>
 {
@@ -116,15 +119,15 @@ getPinnedNotes()
   return this.httpService.get(this.noteApiUrl+this.getPinnedNoteUrl , this.httpOptions);
 }
 
-// setSearchNoteData(message:any)
-// {
-//   return this.searchNote.next({notes:message});
-// }
+setSearchNoteData(message:any)
+{
+  return this.searchNote.next({notes:message});
+}
 
-// getSearchNotes():Observable<any>
-// {
-//   return this.searchNote.asObservable();
-//   // return this.httpService.get(`${this.noteApiUrl}${this.searchNoteUrl}?title=${this.title}`, this.httpOptions);
-// }
+getSearchNotes():Observable<any>
+{
+  return this.searchNote.asObservable();
+  // return this.httpService.get(`${this.noteApiUrl}${this.searchNoteUrl}?title=${this.title}`, this.httpOptions);
+}
 
 }

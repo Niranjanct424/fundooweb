@@ -25,6 +25,7 @@ export const environment = {
   getPinnedNoteUrl:'/fetch/notes/pinned',
   deletePermanentlyUrl:'/deletePermanently/',
   searchNoteUrl:'/getNotesByTitle',
+  restoreTrashrdNoteUrl:'/restore/',
 
   
   // DELETE_FOREVER_NOTE_URL: "/delete",
