@@ -22,26 +22,20 @@ const routes: Routes = [
   {path:"userVerification/:token" , component:UserVerificationComponent},
 
 
-  // {path:"dashboard" , component:DashboardComponent,
-  // children:[{path:"" , redirectTo: "/dashboard/displaynote", pathMatch: "full"},
-  // {path:"createnotes" , component:CreatenotesComponent},
-  // {path:"displaynote" , component:DisplaynotesComponent},]
-  // },
-
-
   {path:"dashboard" , component:DashboardComponent,
-  children:[{path:"" , component:DisplaynotesComponent},
+  children:[{path:"" , redirectTo: "/dashboard/displaynote", pathMatch: "full"},
   {path:"createnotes" , component:CreatenotesComponent},
-  {path:"displaynote" , component:DisplaynotesComponent},
-  {path:"note" , component:NoteComponent}
-   
-  ]},
+  {path:"displaynote" , component:DisplaynotesComponent},]
+  },
 
 
+  // {path:"dashboard" , component:DashboardComponent,
+  // children:[{path:"" , component:DisplaynotesComponent},
   // {path:"createnotes" , component:CreatenotesComponent},
-  // {path:"note" , component:NoteComponent},
   // {path:"displaynote" , component:DisplaynotesComponent},
-  // {path:"workshop",component:WorkshopComponent}
+  // {path:"note" , component:NoteComponent}
+   
+  // ]},
 ];
 
 @NgModule({
