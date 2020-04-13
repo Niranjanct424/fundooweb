@@ -7,7 +7,8 @@ import { Note } from 'src/app/models/note.model';
 export class NotePipe implements PipeTransform {
 
   transform(notes:Note[], searchTerm:string): Note[] {
-    if(!notes || !searchTerm){
+    if(!notes || !searchTerm)
+    {
       return notes;
     }
     console.log('notes',notes,'title',searchTerm);

@@ -20,15 +20,23 @@ const routes: Routes = [
   {path:"forgotPassword" , component:ForgotPasswordComponent},
   {path:"resetPassword/:token" , component:ResetPasswordComponent},
   {path:"userVerification/:token" , component:UserVerificationComponent},
+
+
+  // {path:"dashboard" , component:DashboardComponent,
+  // children:[{path:"" , redirectTo: "/dashboard/displaynote", pathMatch: "full"},
+  // {path:"createnotes" , component:CreatenotesComponent},
+  // {path:"displaynote" , component:DisplaynotesComponent},]
+  // },
+
+
   {path:"dashboard" , component:DashboardComponent,
-  children:[{path:"" , redirectTo: "/dashboard/displaynote", pathMatch: "full"},
+  children:[{path:"" , component:DisplaynotesComponent},
   {path:"createnotes" , component:CreatenotesComponent},
   {path:"displaynote" , component:DisplaynotesComponent},
   {path:"note" , component:NoteComponent}
+   
+  ]},
 
-  ]
-
-}
 
   // {path:"createnotes" , component:CreatenotesComponent},
   // {path:"note" , component:NoteComponent},

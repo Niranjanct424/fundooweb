@@ -19,10 +19,12 @@ export class DisplaynotesComponent implements OnInit {
   others=new Array<Note>();
   notes = new Array<Note>();
   pinned = new Array<Note>();
+  searchNotes: any;
 
   constructor(    private route: Router,
     private matSnackBar: MatSnackBar,
-    private noteService:NoteService , private router:ActivatedRoute) { }
+    private noteService:NoteService ,
+     private router:ActivatedRoute) { }
 
    private param:any;
 
@@ -42,9 +44,8 @@ export class DisplaynotesComponent implements OnInit {
      this.getPinnedNotes();
      
     }
-    
-  
     });
+    this.getSearchNotes();
   }
 
   getOtherNotes(){
@@ -67,8 +68,8 @@ export class DisplaynotesComponent implements OnInit {
   }
 
 
-  getArchivedNotes(){
-
+  getArchivedNotes()
+  {
     this.archiveNotes = true;
     this.trashedNotes = false;
     
@@ -76,11 +77,9 @@ export class DisplaynotesComponent implements OnInit {
 
       (response: any) => {
         console.log("response", response);
-        this.notes = response['object'];
-          
-      }
-    );
-  }
+        this.notes = response['object'];       
+      });
+    }
 
 
   getTrashedNotes(){
@@ -103,17 +102,26 @@ export class DisplaynotesComponent implements OnInit {
     this.trashedNotes = false;
     this.archiveNotes = false;
 
-this.noteService.getPinnedNotes().subscribe(
-  (response: any) => {
+    this.noteService.getPinnedNotes().subscribe(
+    (response: any) => {
     console.log("response", response);
     console.log("notes:",response.object);
     this.pinned = response['object'];
-  }
+    }
   // (error:any)=> {
   //   this.matSnackBar.open(error.error.message, "failed", {duration:5000})
   // }
-);
+    );
   }
+
+  getSearchNotes()
+  {
+    this.noteService.getSearchNotes().subscribe(
+    (message: any) => {
+      console.log("searchtitle",message.notes);
+      this.searchNotes = message.notes;
+     });
+    }
 
 
 }
