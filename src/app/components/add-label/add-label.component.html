@@ -6,15 +6,46 @@
             <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
     </div>
-    <!-- <div class="display-labels">
-        <div  style="margin: -10px 0px;">
-            <mat-checkbox ></mat-checkbox>
-            <label mat-menu-item style="display: inline;"></label>
+    <div class="display-labels">
+        <div *ngFor="let label of labelsList" style="margin: -10px 0px;">
+            <mat-checkbox (click)="addNoteToLabel(label)"></mat-checkbox>
+            <label mat-menu-item style="display: inline;">{{label.labelName}}</label>
         </div>
-    </div> -->
+    </div>
     <div class="footer" style="padding-top: 10px;">
         <mat-divider></mat-divider>
         <div align="end" style="margin-top: 5px;">
             <button mat-button (click)="done()">Done</button>
         </div>
+    </div>
+
 </div>
+
+
+
+
+
+
+
+<!-- <div>
+    <div class="search-label">
+        <div>
+            <input type="text" placeholder="Search" #labelInput>
+        </div>
+        <div>
+            <button mat-icon-button matTooltip="Rename label" class="icon-button">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+    </div>
+    <div class="label-list">
+    <div *ngFor="let label of labelsList">
+        <mat-checkbox></mat-checkbox>
+        <label mat-menu-item>{{label.labelName}}</label>
+    </div>
+</div>
+<mat-divider></mat-divider>
+<div align="end" style="margin-top: 5px;">
+    <button mat-button>Done</button>
+</div>
+</div> -->
