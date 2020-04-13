@@ -33,6 +33,7 @@ export class NoteService {
   private getNotesUrl = environment.getAllNotesUrl;
   private getPinnedNoteUrl = environment.getPinnedNoteUrl;
   private searchNoteUrl = environment.searchNoteUrl;
+  private updatenoteUrl = environment.updateNoteUrl;
   private title:string;
 
   private httpOptions = {
@@ -44,12 +45,6 @@ export class NoteService {
     constructor(private httpService:HttpService , private httpClient:HttpClient) { }
 
     private subject = new Subject<any>();
-
-  // private _notesList = new Subject<any>();
-  // private _subject = new Subject<any>();
-  // private _content = new BehaviorSubject<number>(0);
-  // public share = this._content.asObservable();
-  
 
 
   public get autoRefresh() 
@@ -133,6 +128,11 @@ getSearchNotes():Observable<any>
 {
   return this.searchNote.asObservable();
   //  return this.httpService.get(`${this.noteApiUrl}${this.searchNoteUrl}?title=${this.title}`, this.httpOptions);
+}
+
+updateNote(userId:number , note:any)
+{
+  return this.httpService.put(this.noteApiUrl+this.updatenoteUrl+userId , note , this.httpOptions );
 }
 
 }
