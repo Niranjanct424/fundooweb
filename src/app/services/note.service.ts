@@ -35,24 +35,29 @@ export class NoteService {
   private searchNoteUrl = environment.searchNoteUrl;
   private title:string;
 
-  private httpOptions={
+  private httpOptions = {
     headers: new HttpHeaders ({'content-type':'application/json' ,token: localStorage.getItem("token")})
     };
 
-  constructor(private httpService:HttpService , private httpClient:HttpClient) { }
+    private searchNote=new Subject<any>();
 
-  // private subject = new Subject<any>();
-  private _notesList = new Subject<any>();
-  private _subject = new Subject<any>();
-  private _content = new BehaviorSubject<number>(0);
-  public share = this._content.asObservable();
+    constructor(private httpService:HttpService , private httpClient:HttpClient) { }
+
+    private subject = new Subject<any>();
+
+  // private _notesList = new Subject<any>();
+  // private _subject = new Subject<any>();
+  // private _content = new BehaviorSubject<number>(0);
+  // public share = this._content.asObservable();
   
 
-  public get autoRefresh() {
-    return this._subject;
+
+  public get autoRefresh() 
+  {
+    return this.subject;
   }
 
-  private searchNote=new Subject<any>();
+  
 
 createNote(noteDetail:any):Observable<any>
 {
@@ -127,7 +132,7 @@ setSearchNoteData(message:any)
 getSearchNotes():Observable<any>
 {
   return this.searchNote.asObservable();
-  // return this.httpService.get(`${this.noteApiUrl}${this.searchNoteUrl}?title=${this.title}`, this.httpOptions);
+  //  return this.httpService.get(`${this.noteApiUrl}${this.searchNoteUrl}?title=${this.title}`, this.httpOptions);
 }
 
 }

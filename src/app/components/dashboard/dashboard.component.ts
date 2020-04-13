@@ -45,7 +45,7 @@ onTrash(){
   this.router.navigate(['dashboard/displaynote'],{queryParams:{note:'trash'}});
 }
 
-// searchNote() {
-//   this.noteService.setSearchNoteData(this.title);
-// }
+searchNote() {
+  this.noteService.setSearchNoteData(this.title);
+}
 }
