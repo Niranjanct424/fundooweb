@@ -23,7 +23,8 @@ const routes: Routes = [
   {path:"dashboard" , component:DashboardComponent,
   children:[{path:"" , redirectTo: "/dashboard/displaynote", pathMatch: "full"},
   {path:"createnotes" , component:CreatenotesComponent},
-  {path:"displaynote" , component:DisplaynotesComponent}
+  {path:"displaynote" , component:DisplaynotesComponent},
+  {path:"note" , component:NoteComponent}
 
   ]
 
