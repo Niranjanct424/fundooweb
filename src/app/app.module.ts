@@ -35,6 +35,7 @@ import { from } from 'rxjs';
 import { IconsComponent } from './components/icons/icons.component';
 import { NotePipe } from './pipes/pipes/note.pipe';
 import { UpdatenoteComponent } from './components/updatenote/updatenote.component';
+import { AddLabelComponent } from './components/add-label/add-label.component';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { UpdatenoteComponent } from './components/updatenote/updatenote.componen
     IconsComponent,
     NotePipe,
     UpdatenoteComponent,
+    AddLabelComponent,
     
   ],
   imports: [

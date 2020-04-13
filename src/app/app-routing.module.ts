@@ -10,14 +10,16 @@ import { CreatenotesComponent } from './components/createnotes/createnotes.compo
 import { NoteComponent } from './components/note/note.component';
 import { DisplaynotesComponent } from './components/displaynotes/displaynotes.component';
 import { UpdatenoteComponent } from './components/updatenote/updatenote.component';
+import { AddLabelComponent } from './components/add-label/add-label.component';
 // import { WorkshopComponent } from './components/workshop/workshop.component';
 
 const routes: Routes = [
-  // {path:"workshop" , component:WorkshopComponent},
+ 
   {path:"registration" , component:RegistrationComponent},
-  {path:"" , component:LoginComponent},
+  // {path:"" , component:LoginComponent},
+  {path:"" , component:AddLabelComponent},
+
   {path:"login" , component:LoginComponent},
-  // {path:"" , component:NoteComponent},
   {path:"forgotPassword" , component:ForgotPasswordComponent},
   {path:"resetPassword/:token" , component:ResetPasswordComponent},
   {path:"userVerification/:token" , component:UserVerificationComponent},

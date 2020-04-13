@@ -28,7 +28,13 @@ export const environment = {
   restoreTrashrdNoteUrl:'/restore/',
   updateNoteUrl:'/update/',
   
-
+  // label note
+  LABEL_API_URL: "http://localhost:8081/labels",
+  GET_ALL_LABELS_URL: "/fetch",
+  CREATE_LABEL_URL: "/create",
+  DELETE_LABEL_URL: "/delete",
+  RENAME_LABEL_URL: "/edit?labelName=",
+  MAP_NOTE_TO_LABEL: "/map?",
   
   // DELETE_FOREVER_NOTE_URL: "/delete",
   // NOTE_API_URL: "http://localhost:8080/notes",
