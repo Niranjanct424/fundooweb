@@ -21,7 +21,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatMenuModule} from '@angular/material/menu';
-
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { LoginComponent } from './components/login/login.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
@@ -72,7 +72,8 @@ import { UpdatenoteComponent } from './components/updatenote/updatenote.componen
     FlexLayoutModule,
     MatTooltipModule,
     MatDividerModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDialogModule
 
   ],
 

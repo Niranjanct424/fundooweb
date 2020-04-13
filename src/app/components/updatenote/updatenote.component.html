@@ -1,1 +1,75 @@
-<p>updatenote works!</p>
+<div class="createnotes" >
+    <mat-card class="note-matcard"  fxLayout="column" [ngStyle]="{ 'background-color': note.color }">
+        <textarea matInput type="text" placeholder="Title" [(ngModel)]="note.title" [ngStyle]="{ 'background-color': note.color }"></textarea>
+        <textarea matInput type="text" placeholder="Take a note" [(ngModel)]="note.description" [ngStyle]="{ 'background-color': note.color }"></textarea>
+        <div *ngIf="note.updatedDate!= null">
+            <span style="margin-top: 8px;">
+                <small>Edited: {{note.updatedDate}}</small></span>
+          </div>
+        <div class="icons" style="display:flex;flex-direction: row;align-items: center;">
+            <!-- <mat-icon matTooltip="Remind me">notifications_none</mat-icon>
+            <mat-icon matTooltip="Collaborator">person_add</mat-icon>
+            <mat-icon matTooltip="Change color">color_lens</mat-icon>
+           
+            <mat-icon matTooltip="Archive">archive</mat-icon>
+            <mat-icon matTooltip="Add image">crop_original</mat-icon>
+            <mat-icon matTooltip="More" >more_vert</mat-icon>
+            <mat-icon matTooltip="Undo" >undo</mat-icon>
+            <mat-icon matTooltip="Redo">redo</mat-icon> -->
+            <app-icons [note]="note"></app-icons>
+            
+     
+        <div >
+            <button mat-button class="close" (click)="onSubmit() || (open = !open)">Close</button> 
+    </div>
+    </div>
+    </mat-card>
+    <!-- <div class="display-all-notes">
+    <app-displaynotes></app-displaynotes>
+    </div> -->
+    </div>
+    
+    <!-- <div class="container" mat-dialog-content fxLayout="column" fxFlex>
+        <textarea id="title"  style="border: none;" matInput type="text" class="input sizeof" placeholder="Title"></textarea>
+        <textarea id="desc" style="border: none; " matInput type="text" class="input sizeof" placeholder="Take a note"></textarea>
+      
+        <div class="icon" mat-dialog-actions>
+      <app-icons class="app-note-list sizeof"></app-icons>
+            <div class="div-button" >
+                <button class="button">Close</button></div>
+        </div>
+    </div> -->
+    
+    <!-- <div class="container" >
+        <div class="mat-display"  >
+    <mat-card>
+        <textarea matInput type="text" placeholder="Title"></textarea>
+        <textarea matInput type="text" placeholder="Take a note"></textarea>
+        <div >
+        <app-icons ></app-icons>
+            
+     
+        <div>
+            <button mat-button class="close">Close</button> 
+    </div>
+    </div>
+    </mat-card>
+    </div>
+    </div> -->
+    
+    <!-- <mat-card mat-dialog-content fxLayout="column" fxFlex>
+        <mat-card-title>
+            <textarea matInput matTextareaAutosize type="text" placeholder="Title"
+            ></textarea>
+          </mat-card-title>
+      <mat-card-content>
+        <textarea matInput type="text" matTextareaAutosize placeholder="Take a note"
+        ></textarea>
+      </mat-card-content>
+      <div class="icon" mat-dialog-actions>
+        <app-icons class="app-note"></app-icons>
+        <button mat-button style="margin-left: 42%;">
+          Close
+        </button>
+      </div>
+    </mat-card> -->

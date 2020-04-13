@@ -9,6 +9,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CreatenotesComponent } from './components/createnotes/createnotes.component';
 import { NoteComponent } from './components/note/note.component';
 import { DisplaynotesComponent } from './components/displaynotes/displaynotes.component';
+import { UpdatenoteComponent } from './components/updatenote/updatenote.component';
 // import { WorkshopComponent } from './components/workshop/workshop.component';
 
 const routes: Routes = [
@@ -22,20 +23,24 @@ const routes: Routes = [
   {path:"userVerification/:token" , component:UserVerificationComponent},
 
 
-  {path:"dashboard" , component:DashboardComponent,
-  children:[{path:"" , redirectTo: "/dashboard/displaynote", pathMatch: "full"},
-  {path:"createnotes" , component:CreatenotesComponent},
-  {path:"displaynote" , component:DisplaynotesComponent},]
-  },
-
-
   // {path:"dashboard" , component:DashboardComponent,
-  // children:[{path:"" , component:DisplaynotesComponent},
+  // children:[{path:"" , redirectTo: "/dashboard/displaynote", pathMatch: "full"},
   // {path:"createnotes" , component:CreatenotesComponent},
-  // {path:"displaynote" , component:DisplaynotesComponent},
-  // {path:"note" , component:NoteComponent}
-   
-  // ]},
+  // {path:"displaynote" , component:DisplaynotesComponent},]
+  // },
+
+
+  {path:"dashboard" , component:DashboardComponent,
+  children:[{path:"" , component:DisplaynotesComponent},
+  {path:"createnotes" , component:CreatenotesComponent},
+  {path:"displaynote" , component:DisplaynotesComponent},
+  {path:"update" , component:UpdatenoteComponent},
+  {path:"note" , component:NoteComponent}
+  ]},
+
+  {path:"update" , component:UpdatenoteComponent},
+  {path:"note" , component:NoteComponent}
+
 ];
 
 @NgModule({

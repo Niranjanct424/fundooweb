@@ -26,6 +26,8 @@ export const environment = {
   deletePermanentlyUrl:'/deletePermanently/',
   searchNoteUrl:'/getNotesByTitle',
   restoreTrashrdNoteUrl:'/restore/',
+  updateNoteUrl:'/update/',
+  
 
   
   // DELETE_FOREVER_NOTE_URL: "/delete",

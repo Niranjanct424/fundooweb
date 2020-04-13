@@ -16,13 +16,13 @@
                   </mat-icon>
                 </button>
               </div>
-            <div class="mat-title">
+            <div class="mat-title" (click)="!note.trashed && open(note)">
                 
                 <mat-card-title>
                      {{ note.title }}
                 </mat-card-title>
             </div>
-            <div class="mat-desc">
+            <div class="mat-desc" (click)="!note.trashed && open(note)">
                 
                 <mat-card-content>
                     {{ note.description }}
