@@ -1,5 +1,5 @@
 export class Label {
-    labelId : number;
+    // labelId : number;
     labelName : string;
-    createdDate : any;
+    // createdDate : any;
 }
