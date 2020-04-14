@@ -5,6 +5,7 @@ import { MatSnackBar , MatDialog, MatDialogRef} from '@angular/material';
 import { Router } from "@angular/router";
 import { environment } from "src/environments/environment";
 import { UpdatenoteComponent } from '../updatenote/updatenote.component';
+import { Label } from 'src/app/models/label.model';
 
 @Component({
   selector: 'app-note',
@@ -13,7 +14,9 @@ import { UpdatenoteComponent } from '../updatenote/updatenote.component';
 })
 export class NoteComponent implements OnInit {
   @Input() note: Note;
+  labels:Label[];
   isPinned: boolean;
+ 
 
 
   constructor(private noteService:NoteService,
@@ -22,7 +25,10 @@ export class NoteComponent implements OnInit {
     private dialog: MatDialog) { }
 
   ngOnInit() {
+    this.labels = this.note.labels;
+    console.log('labels:',this.labels);
   }
+
   open(note) {
     console.log("note updating", note);
     const matDialogueReference = this.dialog.open(UpdatenoteComponent, {

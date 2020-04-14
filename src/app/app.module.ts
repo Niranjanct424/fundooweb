@@ -39,7 +39,7 @@ import { AddlabelComponent } from './components/addlabel/addlabel.component';
 import { EditlabelComponent } from './components/editlabel/editlabel.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatListModule} from '@angular/material/list';
-
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -82,7 +82,8 @@ import {MatListModule} from '@angular/material/list';
     MatMenuModule,
     MatDialogModule,
     MatCheckboxModule,
-    MatListModule
+    MatListModule,
+    MatChipsModule
 
   ],
 

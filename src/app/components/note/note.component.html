@@ -24,11 +24,23 @@
             </div>
             <div class="mat-desc" (click)="!note.trashed && open(note)">
                 
-                <mat-card-content>
-                    {{ note.description }}
+                <mat-card-content> 
+                    <textarea style="border: none"
+                    class="textArea"
+                    cdkTextareaAutosize
+                    disabled
+                    [ngStyle]="{ 'background-color': note.color }"
+                    >{{ note.description }}</textarea>
                 </mat-card-content>
             </div>
-            
+            <mat-chip-list>
+              <div  class="matchip" style="width: 100%;">
+                <mat-chip *ngFor="let label of labels">
+                    {{label.labelName}}
+                  <mat-icon matChipRemove >cancel</mat-icon>
+                  </mat-chip>
+              </div>
+            </mat-chip-list>
 
 
 

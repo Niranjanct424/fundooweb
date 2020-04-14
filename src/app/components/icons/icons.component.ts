@@ -16,7 +16,7 @@ export class IconsComponent implements OnInit {
   // dialog: any;
 
   constructor(private noteService:NoteService,
-    private matSnackBar: MatSnackBar,private dialog: MatDialog) { }
+    private matSnackBar: MatSnackBar,private matDialog: MatDialog) { }
 
   colorsList = [
     
@@ -74,21 +74,14 @@ changeColor(color){
   );
 }
 
-
-
-addLabelToNoteDialog(note) {
-  console.log(
-    "fetched Note on add label Click sending the data to add label component : ",
-    note
-  );
-  const dialogReference = this.dialog.open(AddlabelComponent, {
-    width: "280px",
-    height: "auto",
-    data: { note }
+openLabel(note): void {
+  const dialogRef = this.matDialog.open(AddlabelComponent, {
+    width: '250px', height: 'auto', data: { note }
   });
-  dialogReference.afterClosed().subscribe(result => {
-    console.log("dialog closed with out any change");
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('matdialog closed');
   });
 }
+
 
 }
