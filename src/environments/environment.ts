@@ -29,12 +29,17 @@ export const environment = {
   updateNoteUrl:'/update/',
   
   // label note
-  LABEL_API_URL: "http://localhost:8081/labels",
-  GET_ALL_LABELS_URL: "/fetch",
-  CREATE_LABEL_URL: "/create",
-  DELETE_LABEL_URL: "/delete",
-  RENAME_LABEL_URL: "/edit?labelName=",
-  MAP_NOTE_TO_LABEL: "/map?",
+  labelApiUrl:'http://localhost:8080/labels',
+  createLabelUrl:'/create',
+  deleteLabelUrl:'/delete',
+  updateLabelUrl:'/update',
+  getLabelsUrl:'/getLabels',
+  addLabelUrl:'/addLabel',
+
+
+
+
+  
   
   // DELETE_FOREVER_NOTE_URL: "/delete",
   // NOTE_API_URL: "http://localhost:8080/notes",

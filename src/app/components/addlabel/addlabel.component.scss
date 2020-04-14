@@ -1,0 +1,12 @@
+// overriding the color  of mat input
+:host ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: #fff;
+}
+
+// reducing size of button
+.icon-button {
+  transform: scale(0.8);
+}
+mat-icon {
+  opacity: 0.3;
+}

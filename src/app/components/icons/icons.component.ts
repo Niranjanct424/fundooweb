@@ -2,6 +2,8 @@ import { Component, OnInit ,Input} from '@angular/core';
 import { Note } from 'src/app/models/note.model';
 import { NoteService } from 'src/app/services/note.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AddlabelComponent } from '../addlabel/addlabel.component';
+import { MatTooltip, MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-icons',
@@ -11,9 +13,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class IconsComponent implements OnInit {
 
   @Input() note: Note;
+  // dialog: any;
 
   constructor(private noteService:NoteService,
-    private matSnackBar: MatSnackBar) { }
+    private matSnackBar: MatSnackBar,private dialog: MatDialog) { }
 
   colorsList = [
     
@@ -69,6 +72,23 @@ changeColor(color){
       });
     }
   );
+}
+
+
+
+addLabelToNoteDialog(note) {
+  console.log(
+    "fetched Note on add label Click sending the data to add label component : ",
+    note
+  );
+  const dialogReference = this.dialog.open(AddlabelComponent, {
+    width: "280px",
+    height: "auto",
+    data: { note }
+  });
+  dialogReference.afterClosed().subscribe(result => {
+    console.log("dialog closed with out any change");
+  });
 }
 
 }

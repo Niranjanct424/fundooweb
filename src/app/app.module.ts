@@ -37,6 +37,8 @@ import { NotePipe } from './pipes/pipes/note.pipe';
 import { UpdatenoteComponent } from './components/updatenote/updatenote.component';
 import { AddlabelComponent } from './components/addlabel/addlabel.component';
 import { EditlabelComponent } from './components/editlabel/editlabel.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatListModule} from '@angular/material/list';
 
 
 @NgModule({
@@ -78,7 +80,9 @@ import { EditlabelComponent } from './components/editlabel/editlabel.component';
     MatTooltipModule,
     MatDividerModule,
     MatMenuModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCheckboxModule,
+    MatListModule
 
   ],
 
