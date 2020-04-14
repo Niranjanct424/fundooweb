@@ -15,6 +15,8 @@ export class AddlabelComponent implements OnInit {
   labels: Label[];
   label:Label = new Label();
 
+  // labelId : number;
+  //   labelName : string;
   constructor(public dialogRef: MatDialogRef<AddlabelComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,private labelService: LabelService, private matSnackBar: MatSnackBar) {
 
