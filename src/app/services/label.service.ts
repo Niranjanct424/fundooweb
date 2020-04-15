@@ -37,7 +37,7 @@ private addLabelUrl = environment.addLabelUrl;
   }
 
   deleteLabel(label:any){
-return this.httpService.delete(`${this.labelUrl}${this.deleteLabelUrl}?labelId=${label.labelId}` , this.httpOptions);
+    return this.httpService.delete(`${this.labelUrl}${this.deleteLabelUrl}?labelId=${label.labelId}` , this.httpOptions);
   }
 
   updateLabel(label:any){
