@@ -1,3 +1,5 @@
+
+
 import { Injectable } from '@angular/core';
 import {environment} from 'src/environments/environment';
 import {HttpService} from './http.service';
@@ -11,8 +13,8 @@ import { tap } from 'rxjs/operators';
 export class LabelService {
 
 
-private labelUrl = environment.labelApiUrl;
-private createLabelUrl = environment.createLabelUrl;
+  private labelUrl = environment.labelApiUrl;
+  private createLabelUrl = environment.createLabelUrl;
 private deleteLabelUrl = environment.deleteLabelUrl;
 private updateLabelUrl = environment.updateLabelUrl;
 private getLabelUrl = environment.getLabelsUrl;
@@ -34,12 +36,12 @@ private addLabelUrl = environment.addLabelUrl;
     
   }
 
-  deleteLabel(labelId:any){
-return this.httpService.delete(`${this.labelUrl}${this.deleteLabelUrl}?labelId=${labelId}` , this.httpOptions);
+  deleteLabel(label:any){
+return this.httpService.delete(`${this.labelUrl}${this.deleteLabelUrl}?labelId=${label.labelId}` , this.httpOptions);
   }
 
-  updateLabel(labelId:any){
-    return this.httpService.put(`${this.labelUrl}${this.updateLabelUrl}?labelId=${labelId}`, "" , this.httpOptions);
+  updateLabel(label:any){
+    return this.httpService.put(`${this.labelUrl}${this.updateLabelUrl}?labelId=${label.labelId}`, label , this.httpOptions);
   }
 
   getAllLabels(){
@@ -48,5 +50,9 @@ return this.httpService.delete(`${this.labelUrl}${this.deleteLabelUrl}?labelId=$
 
   addLabel(labelId:number , noteId:number){
     return this.httpService.post(`${this.labelUrl}${environment.addLabelUrl}?labelId=${labelId}&noteId=${noteId}`,"" , this.httpOptions);
+  }
+
+  removeLabel(labelId:number , noteId:number){
+    return this.httpService.post(`${this.labelUrl}${environment.removeLabelUrl}?labelId=${labelId}&noteId=${noteId}`,"" , this.httpOptions);
   }
 }

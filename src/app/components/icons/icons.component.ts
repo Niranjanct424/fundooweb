@@ -83,5 +83,30 @@ openLabel(note): void {
   });
 }
 
+addLabelToNoteDialog(note) {
+  console.log(
+    "fetched Note on add label Click sending the data to add label component : ",
+    note
+  );
+  const dialogReference = this.matDialog.open(AddlabelComponent, {
+    width: "280px",
+    height: "auto",
+    data: { note }
+  });
+  dialogReference.afterClosed().subscribe(result => {
+    console.log("dialog closed with out any change");
+  });
+}
+
+// openLabel(note): void {
+//   const dialogRef = this.matDialog.open(AddlabelComponent, {
+//     width: '250px', height: 'auto', data: { note }
+//   });
+//   dialogRef.afterClosed().subscribe(result => {
+//     console.log('matdialog closed');
+//   });
+// }
+
+
 
 }

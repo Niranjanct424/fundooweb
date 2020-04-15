@@ -35,6 +35,15 @@ export const environment = {
   updateLabelUrl:'/update',
   getLabelsUrl:'/getLabels',
   addLabelUrl:'/addLabel',
+  removeLabelUrl:'/remove',
+  
+
+  // LABEL_API_URL: "http://localhost:8080/labels",
+  // GET_ALL_LABELS_URL: "/fetch",
+  // CREATE_LABEL_URL: "/create",
+  // DELETE_LABEL_URL: "/delete",
+  // RENAME_LABEL_URL: "/edit?labelName=",
+  // MAP_NOTE_TO_LABEL: "/map?",
 
 
 

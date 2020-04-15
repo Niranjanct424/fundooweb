@@ -12,11 +12,9 @@ import { MatSnackBar , MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 export class AddlabelComponent implements OnInit {
 
   noteId:number;
-  labels: Label[];
+  labelsList: Label[];
   label:Label = new Label();
 
-  // labelId : number;
-  //   labelName : string;
   constructor(public dialogRef: MatDialogRef<AddlabelComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,private labelService: LabelService, private matSnackBar: MatSnackBar) {
 
@@ -32,7 +30,7 @@ export class AddlabelComponent implements OnInit {
     this.labelService.getAllLabels().subscribe(
       (response:any) => {
         console.log("label list", response);
-        this.labels = response.object;
+        this.labelsList = response.object;
     
       }
     );
@@ -45,7 +43,10 @@ export class AddlabelComponent implements OnInit {
       (response:any) => {
         console.log("input:", input);
         console.log("response:", response);
-        this.matSnackBar.open("Label Created","Ok",{duration:3000});
+        this.matSnackBar.open("Label Created","Ok",{duration:2000});
+        this.label = response['object'];
+        console.log("new label:",this.label);
+        this.addLabel(this.label.labelId);
     
       }
     );

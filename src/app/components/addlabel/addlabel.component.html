@@ -6,7 +6,7 @@
     </mat-form-field>
 </div>
 <div >
-    <div  *ngFor="let label of labels" style="margin: -10px 0px;">
+    <div  *ngFor="let label of labelsList" style="margin: -10px 0px;">
         <mat-checkbox (click)="addLabel(label.labelId)"></mat-checkbox>
         <label mat-menu-item style="display: inline;" >{{label.labelName}}</label>
     </div>

@@ -6,6 +6,8 @@ import { Router } from "@angular/router";
 import { environment } from "src/environments/environment";
 import { UpdatenoteComponent } from '../updatenote/updatenote.component';
 import { Label } from 'src/app/models/label.model';
+import { LabelService } from "src/app/services/label.service";
+
 
 @Component({
   selector: 'app-note',
@@ -14,19 +16,24 @@ import { Label } from 'src/app/models/label.model';
 })
 export class NoteComponent implements OnInit {
   @Input() note: Note;
-  labels:Label[];
+  // labels:Label[];
   isPinned: boolean;
- 
+  labelsList: Label[];
+  // labelsList
+  // label:Label;
 
 
   constructor(private noteService:NoteService,
     private matSnackBar: MatSnackBar,
     private _router: Router,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    private _labelService: LabelService,
+    ) { }
 
-  ngOnInit() {
-    this.labels = this.note.labels;
-    console.log('labels:',this.labels);
+  ngOnInit()
+   {
+    this.labelsList = this.note.labelsList;
+    console.log('labelslist:',this.labelsList);
   }
 
   open(note) {
@@ -35,8 +42,8 @@ export class NoteComponent implements OnInit {
       width: "auto",
       height: "auto",
       data: { note }
-      });
-      matDialogueReference.afterClosed().subscribe(result => {
+    });
+    matDialogueReference.afterClosed().subscribe(result => {
       console.log("note updated");
     });
   }
