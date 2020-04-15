@@ -13,5 +13,5 @@ export class Note {
     updatedDate: String;
     userId: number;
     labelsList: Array<any>;
-    labels:[];
+    
 }
