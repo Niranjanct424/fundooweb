@@ -1,1 +1,41 @@
-<p>editlabel works!</p>
+<div>
+    <div class="editlabels">Edit label</div>
+    <div fxLayout="column" fxLayoutAlign="space-between center">
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div>
+          <button type="reset" mat-icon-button matTooltip="Cancel" class="icon-button">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+        <div>
+          <mat-form-field appearance="fill" autocomplete="off" color="white" >
+            <input matInput id="labelName" placeholder="Create new label" [(ngModel)]="label.labelName" #labelInput/>
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-icon-button matTooltip="Create label" class="icon-button" (click)="createLabel()">
+            <mat-icon>check</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div *ngFor = "let label of labelsList" fxLayout="row" fxLayoutAlign="space-between center" >
+        <div>
+          <button mat-icon-button matTooltip="Delete label" class="icon-button" (click)="deleteLabel(label)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+        <div>
+          <input #inputValue  [value]="label.labelName" matInput type="text" autocomplete="off"/>
+        </div>
+        <div>
+          <button mat-icon-button matTooltip="Rename label" class="icon-button" (click)="updateLabel(label,inputValue)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div fxLayoutAlign="end" style="margin-top: 5px;">
+      <button mat-button (click)="done()">Done</button>
+    </div>
+  </div>

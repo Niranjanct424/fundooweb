@@ -1,4 +1,3 @@
-
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -86,6 +85,7 @@ import {MatChipsModule} from '@angular/material/chips';
     MatChipsModule
 
   ],
+  entryComponents: [EditlabelComponent],
 
 
 
