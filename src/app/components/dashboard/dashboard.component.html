@@ -14,8 +14,9 @@
       <img class="fundoo-icon" src="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png" srcset="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png 1x, https://www.gstatic.com/images/branding/product/2x/keep_48dp.png 2x " alt="" aria-hidden="true" style="width:40px;height:40px">
           <span>FundooNote</span>
 
-          <div class="search">
-     
+          
+    
+    <div class="search">
     <button mat-icon-button  class="search-icon">
       <mat-icon matTooltip="search">search</mat-icon>
     </button>
@@ -29,9 +30,16 @@
     <button mat-icon-button class="refresh" (click)="refresh()">
       <mat-icon matTooltip="Refresh">refresh</mat-icon>
     </button>
-    <button mat-icon-button class="grid">
-      <mat-icon matTooltip="Grid view">grid_view</mat-icon>
+
+    <!-- <div fxLayout="row"  fxLayoutAlign="center center" fxFlex="10" fxLayoutGap="30px"> -->
+    <button mat-icon-button *ngIf="view" matTooltip="Grid view" (click)="getView()">
+      <mat-icon>view_module</mat-icon>
     </button>
+    <button mat-icon-button *ngIf="!view" matTooltip="List view" (click)="getView()">
+      <mat-icon>view_stream</mat-icon>
+    </button>
+    <!-- </div> -->
+
     <button mat-icon-button class="setting">
       <mat-icon matTooltip="Settings">settings</mat-icon>
     </button>

@@ -25,10 +25,22 @@ export class DashboardComponent implements OnInit {
     });
    }
 
-   grid: boolean = true;
-   onClickView() {
-    return this.grid === true ? (this.grid = false) : (this.grid = true);
-  }
+    view: boolean = false;
+    grid = "row";
+    getView() {
+      if(this.view==true){
+        this.view=false;
+        this.grid="row";
+      }
+      else{
+        this.view=true;
+        this.grid="column";
+      }
+        // this.router.navigate(['/dashboard/displaynote'], { queryParams: { note: 'view', view: this.grid } });
+        this.noteService.setView(this.grid);
+        console.log(this.view);
+    }
+   
 
 
 
