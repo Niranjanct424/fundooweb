@@ -41,6 +41,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatChipsModule} from '@angular/material/chips';
 import { AmazingTimePickerModule } from 'amazing-time-picker';
 import { LabelPipe } from './pipes/pipes/label.pipe';
+import { CollaboratorComponent } from './components/collaborator/collaborator.component';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { LabelPipe } from './pipes/pipes/label.pipe';
     AddlabelComponent,
     EditlabelComponent,
     LabelPipe,
+    CollaboratorComponent,
 
     
   ],
