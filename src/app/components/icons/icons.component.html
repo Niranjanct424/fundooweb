@@ -1,10 +1,11 @@
 
 <div class="note-icon">
-  <button mat-icon-button>
-      <mat-icon matTooltip="Remind me">notifications_none</mat-icon>
+  <button mat-icon-button (click)="openTimePicker(note.noteId)" type="time">
+      <!-- <mat-icon matTooltip="Remind me">notifications_none</mat-icon> -->
+      <mat-icon>add_alert</mat-icon>
   </button>
-  <button mat-icon-button>
-      <mat-icon matTooltip="Collaborator">person_add</mat-icon>
+  <button mat-icon-button (click)="dialogCol()">
+      <mat-icon matTooltip="Add Collobrate">person_add</mat-icon>
   </button>
   <button mat-icon-button [matMenuTriggerFor]="menu1">
       <mat-icon matTooltip="Add color">color_lens</mat-icon>
@@ -42,11 +43,11 @@
   <button mat-menu-item (click)="deleteNote()">
     Delete Note
   </button>
-  <button mat-menu-item (click)="addLabelToNoteDialog(note)"> 
+  <button mat-menu-item (click)="openLabel(note)"> 
     Add label
   </button>
-  <mat-list-item>
+  <!-- <mat-list-item>
     <button mat-button>Show checkboxes</button>
-</mat-list-item>
+</mat-list-item> -->
 </mat-menu>
 </div>

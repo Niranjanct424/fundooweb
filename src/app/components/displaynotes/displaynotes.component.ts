@@ -20,6 +20,7 @@ export class DisplaynotesComponent implements OnInit {
   notes = new Array<Note>();
   pinned = new Array<Note>();
   searchNotes: any;
+  view:any;
 
   constructor(    private route: Router,
     private matSnackBar: MatSnackBar,
@@ -33,6 +34,7 @@ export class DisplaynotesComponent implements OnInit {
     if (this.param == "archive") 
     {
       this.getArchivedNotes();
+      this.getView();
     }
     else if(this.param == "trash")
     {
@@ -42,6 +44,7 @@ export class DisplaynotesComponent implements OnInit {
     {
      this.getOtherNotes();
      this.getPinnedNotes();
+     this.getView();
      
     }
     });
@@ -123,10 +126,18 @@ export class DisplaynotesComponent implements OnInit {
      });
     }
 
+    getView()
+   {
+      this.noteService.getView().subscribe(
+      (response:any)=>{
+      this.view=response.view;
+         });
+  
+   }
 
 }
 
-
+  
 
 
 

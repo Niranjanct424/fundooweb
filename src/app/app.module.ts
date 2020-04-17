@@ -39,6 +39,8 @@ import { EditlabelComponent } from './components/editlabel/editlabel.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatListModule} from '@angular/material/list';
 import {MatChipsModule} from '@angular/material/chips';
+import { AmazingTimePickerModule } from 'amazing-time-picker';
+
 
 @NgModule({
   declarations: [
@@ -82,11 +84,13 @@ import {MatChipsModule} from '@angular/material/chips';
     MatDialogModule,
     MatCheckboxModule,
     MatListModule,
-    MatChipsModule
+    MatChipsModule,
+    AmazingTimePickerModule,
+    
 
   ],
   entryComponents: [EditlabelComponent],
-
+  
 
 
   providers: [],

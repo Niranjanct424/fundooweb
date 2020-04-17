@@ -25,6 +25,13 @@ export class DashboardComponent implements OnInit {
     });
    }
 
+   grid: boolean = true;
+   onClickView() {
+    return this.grid === true ? (this.grid = false) : (this.grid = true);
+  }
+
+
+
   ngOnInit() {
     this.getAllLabels();
   }

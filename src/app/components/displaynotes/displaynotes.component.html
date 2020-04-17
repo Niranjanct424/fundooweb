@@ -5,7 +5,7 @@
         <div class="label" >PINNED NOTES</div>
     </div>
         <div class="container"  fxLayout="column wrap" fxLayout.xs="coloum wrap" >
-            <div fxLayout="row wrap" fxLayoutGap="10px" >
+            <div fxLayout={{view}} fxLayoutGap="10px" >
         <div *ngFor="let note of pinned | note:searchNotes">
             <app-note [note]="note"></app-note>
         </div>
@@ -20,7 +20,7 @@
                     <div class="label" >OTHERS</div></div></div>
     
             <div class="container"  fxLayout="column wrap" fxLayout.xs="coloum wrap" >
-        <div fxLayout="row wrap" fxLayoutGap="10px" >
+        <div fxLayout={{view}} fxLayoutGap="10px" >
     <div *ngFor="let note of notes | note:searchNotes">
         <app-note [note]="note"></app-note>
     </div>

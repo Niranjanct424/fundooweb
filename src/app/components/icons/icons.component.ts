@@ -4,6 +4,10 @@ import { NoteService } from 'src/app/services/note.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AddlabelComponent } from '../addlabel/addlabel.component';
 import { MatTooltip, MatDialog } from '@angular/material';
+import { AmazingTimePickerService } from "amazing-time-picker";
+import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
+import { ReminderDto } from 'src/app/models/reminder-dto.model';
 
 @Component({
   selector: 'app-icons',
@@ -16,7 +20,78 @@ export class IconsComponent implements OnInit {
   // dialog: any;
 
   constructor(private noteService:NoteService,
-    private matSnackBar: MatSnackBar,private matDialog: MatDialog) { }
+    private matSnackBar: MatSnackBar,private matDialog: MatDialog,
+    private _amazingTimePicker: AmazingTimePickerService,
+    private _router: Router,
+    // private atp: AmazingTimePickerService,
+    ) { }
+
+// start reminderDate
+    ngOnInit() {}
+    selectedTime: string;
+    // reminderDate: string;
+    today: any;
+
+    openTimePicker(noteId) {
+      // pop up for setting alarm
+      console.log("fetched note id for remainder : ", noteId);
+      const amazingTimePicker = this._amazingTimePicker.open({
+        time: this.selectedTime,
+        // time: this.reminderDate,
+        theme: "dark",
+        arrowStyle: {
+          background: "red",
+          color: "white"
+        }
+      });
+      // after choosing time from clock
+      amazingTimePicker.afterClose().subscribe(time => {
+      // storing the selected time in a variable with some string concatination
+      this.selectedTime = time + ":00 hours";
+      console.log("time selected : ", this.selectedTime);
+      // this.note.reminderDate = this.selectedTime;
+      console.log("time selected : ", this.note.reminderDate);
+      // after getting data from clock call for remainder operation
+      this.noteService.addRemainderToNote(noteId, this.selectedTime).subscribe(
+        (response:any) => {
+          console.log("response : ", response);
+          this.matSnackBar.open(response.message, "ok", {
+            duration: 4000
+          });
+        },
+        errors => {
+          console.log("errors", errors);
+          if (errors.error.statusCode === 401) {
+            localStorage.clear();
+            this._router.navigateByUrl(`${environment.LOGIN_URL}`);
+            this.matSnackBar.open(
+              errors.error.message + " , login to continue.",
+              "Opps!",
+              {
+                duration: 5000
+              }
+            );
+          } else if (errors.error.statusCode === 502) {
+            console.log(
+              "alarm already set for that time : ",
+              this.selectedTime
+            );
+            this.matSnackBar.open(errors.error.message, "Opps!", {
+              duration: 5000
+            });
+          } else {
+            this.matSnackBar.open(errors.error.message, "ok", {
+              duration: 5000
+            });
+          }
+        }
+      );
+    });
+  }
+// end
+
+
+
 
   colorsList = [
     
@@ -40,8 +115,7 @@ export class IconsComponent implements OnInit {
     ]
   ]
 
-  ngOnInit() {
-  }
+ 
 
   archieveNote()
   {
@@ -98,14 +172,6 @@ addLabelToNoteDialog(note) {
   });
 }
 
-// openLabel(note): void {
-//   const dialogRef = this.matDialog.open(AddlabelComponent, {
-//     width: '250px', height: 'auto', data: { note }
-//   });
-//   dialogRef.afterClosed().subscribe(result => {
-//     console.log('matdialog closed');
-//   });
-// }
 
 
 

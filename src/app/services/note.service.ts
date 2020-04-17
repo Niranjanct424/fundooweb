@@ -45,7 +45,7 @@ export class NoteService {
     constructor(private httpService:HttpService , private httpClient:HttpClient) { }
 
     private subject = new Subject<any>();
-
+    private view=new Subject<any>();
 
   public get autoRefresh() 
   {
@@ -134,5 +134,49 @@ updateNote(userId:number , note:any)
 {
   return this.httpService.put(this.noteApiUrl+this.updatenoteUrl+userId , note , this.httpOptions );
 }
+
+
+// start
+
+public addRemainderToNote(noteId: number, time:string) {
+  console.log("service reached with id : " + noteId);
+  console.log(
+    this.noteApiUrl +
+      "/" +
+      noteId +
+      `/remainder/add?time=+${time}`
+  );
+  return this.httpService
+    .put(
+      this.noteApiUrl +
+      "/" +
+      noteId +
+      `/remainder/add?time=+${time}`,
+      {},
+      this.httpOptions
+    )
+    .pipe(
+      tap(() => {
+        this.subject.next();
+      })
+    );
+    
+}
+
+    setView(data:any)
+    {
+      this.view.next({view:data});
+    }
+    getView():Observable<any>
+    {
+      return this.view.asObservable();
+    }
+
+
+
+
+
+
+
 
 }
