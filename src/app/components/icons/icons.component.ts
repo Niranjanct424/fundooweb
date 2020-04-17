@@ -8,6 +8,7 @@ import { AmazingTimePickerService } from "amazing-time-picker";
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { ReminderDto } from 'src/app/models/reminder-dto.model';
+import { CollaboratorComponent } from '../collaborator/collaborator.component';
 
 @Component({
   selector: 'app-icons',
@@ -17,6 +18,7 @@ import { ReminderDto } from 'src/app/models/reminder-dto.model';
 export class IconsComponent implements OnInit {
 
   @Input() note: Note;
+  noteId: number;
   // dialog: any;
 
   constructor(private noteService:NoteService,
@@ -125,6 +127,19 @@ export class IconsComponent implements OnInit {
     this.matSnackBar.open(response['message'], "Ok", { duration: 4000})
     });
   }
+
+  collabrator(): void {
+    console.log("Note id in colab111111--->", this.note.noteId);
+    const dialogRef = this.matDialog.open(CollaboratorComponent, {
+      width: 'auto',
+      height: '290px',
+      data: { noteId: this.note.noteId }
+      
+    });
+    // console.log("data"+data);
+
+}
+
   
 
 deleteNote(){

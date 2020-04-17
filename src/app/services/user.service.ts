@@ -51,4 +51,10 @@ export class UserService {
   {
     return this.httpService.put(this.userApiUrl+environment.userVerificationUrl+token,"" , this.httpOptions);
   }
+  addCollaborator(user: number,email:any): Observable<any> 
+  { 
+    return this.httpService.post(environment.colaborators+'?email='+email+'&noteId='+user,{},this.httpOptions);
+}
+
+
 }

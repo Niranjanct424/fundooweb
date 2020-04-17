@@ -93,7 +93,10 @@ import { CollaboratorComponent } from './components/collaborator/collaborator.co
     
 
   ],
-  entryComponents: [EditlabelComponent],
+  entryComponents: [
+    EditlabelComponent,
+    CollaboratorComponent
+  ],
   
 
 
