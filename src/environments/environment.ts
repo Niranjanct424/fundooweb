@@ -44,6 +44,11 @@ export const environment = {
   // DELETE_LABEL_URL: "/delete",
   // RENAME_LABEL_URL: "/edit?labelName=",
   // MAP_NOTE_TO_LABEL: "/map?",
+  ADD_REMAINDER_URL: "/remainder/add?time=",
+  REMOVE_REMAINDER_URL: "/remainder/remove",
+  CREATE_NOTE_URL: "/create",
+  GET_ALL_REMAINDER_NOTES_URL: "/fetch/notes/remainders",
+  NOTE_API_URL: "http://localhost:8080/notes",
 
 
 

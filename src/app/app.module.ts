@@ -40,6 +40,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatListModule} from '@angular/material/list';
 import {MatChipsModule} from '@angular/material/chips';
 import { AmazingTimePickerModule } from 'amazing-time-picker';
+import { LabelPipe } from './pipes/pipes/label.pipe';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { AmazingTimePickerModule } from 'amazing-time-picker';
     UpdatenoteComponent,
     AddlabelComponent,
     EditlabelComponent,
+    LabelPipe,
 
     
   ],
