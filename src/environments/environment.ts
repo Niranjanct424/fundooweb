@@ -36,14 +36,11 @@ export const environment = {
   getLabelsUrl:'/getLabels',
   addLabelUrl:'/addLabel',
   removeLabelUrl:'/remove',
+  getNotesByLableUrl:'/getNotesByLabel/',
   
 
   // LABEL_API_URL: "http://localhost:8080/labels",
-  // GET_ALL_LABELS_URL: "/fetch",
-  // CREATE_LABEL_URL: "/create",
-  // DELETE_LABEL_URL: "/delete",
-  // RENAME_LABEL_URL: "/edit?labelName=",
-  // MAP_NOTE_TO_LABEL: "/map?",
+
   ADD_REMAINDER_URL: "/remainder/add?time=",
   REMOVE_REMAINDER_URL: "/remainder/remove",
   CREATE_NOTE_URL: "/create",

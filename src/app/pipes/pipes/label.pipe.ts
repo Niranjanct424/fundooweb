@@ -5,8 +5,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class LabelPipe implements PipeTransform {
 
-  transform(value: any, ...args: any[]): any {
-    return null;
+  transform(labelList: any[], labelName: string): any {
+    if(!labelList) 
+    return [];
+    if(!labelName) 
+    return labelList;
+    console.log("labelName:",labelName);
+    return labelList.filter( label => {return label.labelName.toLowerCase().includes(labelName.toLowerCase());});
   }
 
 }
