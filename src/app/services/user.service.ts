@@ -53,7 +53,7 @@ export class UserService {
   }
   addCollaborator(user: number,email:any): Observable<any> 
   { 
-    return this.httpService.post(environment.colaborators+'?email='+email+'&noteId='+user,{},this.httpOptions);
+    return this.httpService.post(environment.colaborators+'?email='+email+'&noteId='+user,{},{headers:new HttpHeaders({"token":localStorage.token})});
 }
 
 

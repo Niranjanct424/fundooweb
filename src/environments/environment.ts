@@ -12,7 +12,7 @@ export const environment = {
   forgotPasswordUrl:'/User/ForgotPassword',
   resetPasswordUrl:'/User/UpdatePassword/',
   userVerificationUrl:'/User/Verification/',
-  colaborators:'http://localhost:8080/colaborators/add',
+  colaborators:'localhost:8080/colaborators/add',
 
   noteApiUrl:'http://localhost:8080/notes',
   createNoteUrl:'/Create',
