@@ -51,10 +51,22 @@ export class UserService {
   {
     return this.httpService.put(this.userApiUrl+environment.userVerificationUrl+token,"" , this.httpOptions);
   }
-  addCollaborator(user: number,email:any): Observable<any> 
-  { 
-    return this.httpService.post(environment.colaborators+'?email='+email+'&noteId='+user,{},{headers:new HttpHeaders({"token":localStorage.token})});
+//   addCollaborator(user: number,email:any): Observable<any> 
+//   { 
+//     return this.httpService.post(environment.colaborators+'?email='+email+'&noteId='+user,{},{headers:new HttpHeaders({"token":localStorage.token})});
+// }
+addCollaborator(noteId:number , email:any)
+{
+  return this.httpService.post(`${this.userApiUrl}${environment.addCollaboratorUrl}?noteId=${noteId}&email=${email}`, {}, {headers:new HttpHeaders({'token':localStorage.token})});
+}
+deleteCollaborator(noteId:number , email:any)
+{
+  return this.httpService.delete(`${this.userApiUrl}${environment.deleteCollaboratorUrl}?email=${email}&noteId=${noteId}`, {headers:new HttpHeaders({'token':localStorage.token})}); 
 }
 
+getCollaborators(noteId:number)
+{
+  return this.httpService.get(`${this.userApiUrl}${environment.getCollaboratorsUrl}?noteId=${noteId}`, {headers:new HttpHeaders({'token':localStorage.token})});
+}
 
 }

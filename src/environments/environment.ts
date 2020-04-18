@@ -12,7 +12,7 @@ export const environment = {
   forgotPasswordUrl:'/User/ForgotPassword',
   resetPasswordUrl:'/User/UpdatePassword/',
   userVerificationUrl:'/User/Verification/',
-  colaborators:'localhost:8080/colaborators/add',
+  // colaborators:'localhost:8080/colaborators/add',
 
   noteApiUrl:'http://localhost:8080/notes',
   createNoteUrl:'/Create',
@@ -38,25 +38,21 @@ export const environment = {
   addLabelUrl:'/addLabel',
   removeLabelUrl:'/remove',
   getNotesByLableUrl:'/getNotesByLabel/',
+
+
+
+  addCollaboratorUrl:'/addCollaborator',
+  deleteCollaboratorUrl:'/deleteCollaborator',
+  getCollaboratorsUrl:'/getCollaborators',
   
 
-  // LABEL_API_URL: "http://localhost:8080/labels",
+
 
   ADD_REMAINDER_URL: "/remainder/add?time=",
   REMOVE_REMAINDER_URL: "/remainder/remove",
   CREATE_NOTE_URL: "/create",
   GET_ALL_REMAINDER_NOTES_URL: "/fetch/notes/remainders",
-  NOTE_API_URL: "http://localhost:8080/notes",
-
-
-
-
-  
-  
-  // DELETE_FOREVER_NOTE_URL: "/delete",
-  // NOTE_API_URL: "http://localhost:8080/notes",
-  
-  
+  NOTE_API_URL: "http://localhost:8080/notes",  
   LOGIN_URL: '/login',
   DELETE_NOTE_URL:'/delete/',
   UPDATE_NOTE_URL: "/update?id=",

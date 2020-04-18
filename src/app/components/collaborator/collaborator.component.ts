@@ -1,10 +1,8 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { User } from 'src/app/models/user.model';
+import { Component, OnInit ,Inject} from '@angular/core';
+import { MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { NoteService } from 'src/app/services/note.service';
-import { FormControl } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-collaborator',
@@ -12,35 +10,64 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./collaborator.component.scss']
 })
 export class CollaboratorComponent implements OnInit {
+  ownerName:String="Niranjan";
+  ownerEmail;
+  noteId:number;
+  collaborators:User[];
 
-  onenote: any;
-  email: any;
-  user:User=new User();
-  collarr: any; 
-
-  email1 = new FormControl();
-  message:string;
-  ToData: any[];
-
-  constructor(private userService: UserService, @Inject(MAT_DIALOG_DATA) public data: any,
-  ) { }
+  constructor( @Inject(MAT_DIALOG_DATA) public data: any,
+  private noteService:NoteService,private userService:UserService,
+  private matSnackBar: MatSnackBar) 
+  {
+    this.noteId = data.noteId;
+  }
   
   
   ngOnInit() {
-    this.email = localStorage.getItem('email');
+    this.ownerEmail = localStorage.getItem('email');
+    this.getCollaborators();
   }
 
-  writeEmail() {
-    console.log(this.email1.value);
-    let addColl = {
-      "email ": this.email1.value
+  addCollaborator(email)
+  {
+    console.log("email to add:",email);
+    this.userService.addCollaborator(this.noteId , email).subscribe(
+      (response:any)=>{
+        this.matSnackBar.open(response['message'] , "ok" , {duration:4000});
+      },
+      (error:any)=> {
+          this.matSnackBar.open(error.error.message, "failed", {duration:5000});
+        }
+    )
+  }
+
+  removeCollaborator(email)
+  {
+    console.log("email to remove:",email);
+  this.userService.deleteCollaborator(this.noteId , email).subscribe(
+    (response:any)=>{
+      this.matSnackBar.open(response['message'] , "ok" , {duration:4000});
+    },
+    (error:any)=> {
+        this.matSnackBar.open(error.error.message, "failed", {duration:5000});
+      }
+  );
     }
-    console.log("Add coll-->", addColl);
-    console.log("data-->", this.data);
-        this.userService.addCollaborator(this.data.noteId,this.email1.value).subscribe((res: any) => {
-  console.log("Getting all collab users--->", res);
 
-    })
-  }
+    getCollaborators()
+    {
+     this.userService.getCollaborators(this.noteId).subscribe(
+      (response:any)=>{
+        // this.matSnackBar.open(response['message'] , "ok" , {duration:4000});
+        this.collaborators = response['object'];
+        console.log("collaborators list:",this.collaborators);
+      },
+      (error:any)=> {
+          this.matSnackBar.open(error.error.message, "failed", {duration:5000});
+        }
+     ) 
+    }
+  
+  
 
 }

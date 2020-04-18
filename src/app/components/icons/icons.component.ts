@@ -69,20 +69,6 @@ export class IconsComponent implements OnInit {
     });
   }
 
-  collabrator(): void {
-    console.log("Note id in colab111111--->", this.note.noteId);
-    const dialogRef = this.matDialog.open(CollaboratorComponent, {
-      width: 'auto',
-      height: '290px',
-      data: { noteId: this.note.noteId }
-      
-    });
-    // console.log("data"+data);
-
-}
-
-  
-
 deleteNote(){
   this.noteService.trashNote(this.note.noteId).subscribe(
     (response :any) => {
@@ -136,6 +122,15 @@ reminder(datetime)
   })
 }
 
+addCollaborator(note)
+{
+    const dialogRef=this.matDialog.open(CollaboratorComponent,{
+    data:{noteId:note.noteId}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    console.log("collaborator closed");
+    });
+}
 
 
 

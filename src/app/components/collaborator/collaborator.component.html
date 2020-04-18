@@ -1,36 +1,48 @@
-<div class="dialogg">
-    <div fxLayout="row" fxLayoutAlign="start center">
-      <span style="font-size:large; font-family: inherit">Collaborators</span>
-    </div>
-    <div style="height:64px"  fxLayout="row" fxLayoutAlign="start center">
-      <div>
-      <div  fxLayout="row" fxLayoutAlign="start start" fxLayoutGap=6px>
-    </div>
-      <div>{{email}}</div>
-      </div>
-    </div>
-    <div style="width: 82%" *ngFor="let item of collarr">
-        <div fxLayout="row" fxLayoutAlign="start center" >
-           <div>
-      <div style="width: 85%;">{{item.email}}</div>
-      </div>
-    </div>
-  </div>
- 
-  <div  fxLayout="row" fxLayout="row" fxLayoutAlign="start center" >
-    <div >
-        <mat-icon matPrefix style="margin-right:10px;">person_add</mat-icon>
-        </div>
-        <div ><input class="input" matInput placeholder="person or email to share with" [formControl]="email1" required></div>
-  
-  <div >
-      <button mat-icon-button (click)="writeEmail()"><mat-icon>done</mat-icon></button>
-  </div>
-</div> 
 
-    <div class="colab" fxLayout="row" fxLayoutAlign="end center">
-        <button mat-button mat-dialog-close>Cancel</button>
-     
+<div>
+  <div fxLayout="row" fxLayoutAlign="start center">
+    <span style="font-size:large; font-family: inherit">Collaborators</span>
+  </div>
+  <mat-divider></mat-divider>
+  <div style="height:64px" fxLayout="row" fxLayoutAlign="start center">
+    <div>
+      <!-- <img src="" style="height: 60px;width: 60px; padding: 0px;margin: 0px;" /> -->
+      <!-- <mat-icon >face</mat-icon>  -->
+  </div>
+    <div>
+      <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap=2px>
+        <div style="font-size: large; padding-bottom: 10px;">{{ownerName}}(owner)</div>
+        <div style="font-size: large; padding-bottom: 10px;">{{ownerEmail}}</div>
+      </div>
+  </div>
 </div>
+
+  <div style="width: 82%" *ngFor="let user of collaborators">
+      <div fxLayout="row" fxLayoutAlign="start center">
+          <div>
+          <div style=" padding-left:15px; width: 85%;">{{user.emailId}}</div>
+        </div>
+        <div><button mat-icon-button style="margin-left:5px">
+            <mat-icon (click)="removeCollaborator(user.emailId)" matTooltip="remove collaborator">clear</mat-icon>
+          </button></div>
+      </div>
+    </div>
+
+  <div style="margin-top: 10px;" fxLayout="row" fxLayout="row" fxLayoutAlign="start center">
+    <div>
+      <mat-icon matPrefix style="margin-right:10px;">person_add</mat-icon>
+    </div>
+    <div><input class="input" matInput placeholder="person or email to share with" #email required></div>
+
+    <div>
+      <button mat-icon-button (click)="addCollaborator(email.value)">
+        <mat-icon matTooltip="Add collaborator">done</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="cancel" fxLayout="row" fxLayoutAlign="end center">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button mat-dialog-close>Save</button>
+  </div>
 
 </div>
