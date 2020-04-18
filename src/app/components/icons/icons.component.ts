@@ -30,68 +30,9 @@ export class IconsComponent implements OnInit {
 
 // start reminderDate
     ngOnInit() {}
-    selectedTime: string;
-    // reminderDate: string;
-    today: any;
-
-    openTimePicker(noteId) {
-      // pop up for setting alarm
-      console.log("fetched note id for remainder : ", noteId);
-      const amazingTimePicker = this._amazingTimePicker.open({
-        time: this.selectedTime,
-        // time: this.reminderDate,
-        theme: "dark",
-        arrowStyle: {
-          background: "red",
-          color: "white"
-        }
-      });
-      // after choosing time from clock
-      amazingTimePicker.afterClose().subscribe(time => {
-      // storing the selected time in a variable with some string concatination
-      this.selectedTime = time + ":00 hours";
-      console.log("time selected : ", this.selectedTime);
-      // this.note.reminderDate = this.selectedTime;
-      console.log("time selected : ", this.note.reminderDate);
-      // after getting data from clock call for remainder operation
-      this.noteService.addRemainderToNote(noteId, this.selectedTime).subscribe(
-        (response:any) => {
-          console.log("response : ", response);
-          this.matSnackBar.open(response.message, "ok", {
-            duration: 4000
-          });
-        },
-        errors => {
-          console.log("errors", errors);
-          if (errors.error.statusCode === 401) {
-            localStorage.clear();
-            this._router.navigateByUrl(`${environment.LOGIN_URL}`);
-            this.matSnackBar.open(
-              errors.error.message + " , login to continue.",
-              "Opps!",
-              {
-                duration: 5000
-              }
-            );
-          } else if (errors.error.statusCode === 502) {
-            console.log(
-              "alarm already set for that time : ",
-              this.selectedTime
-            );
-            this.matSnackBar.open(errors.error.message, "Opps!", {
-              duration: 5000
-            });
-          } else {
-            this.matSnackBar.open(errors.error.message, "ok", {
-              duration: 5000
-            });
-          }
-        }
-      );
-    });
-  }
-// end
-
+    // selectedTime: string;
+    // // reminderDate: string;
+    // today: any;
 
 
 
@@ -185,6 +126,14 @@ addLabelToNoteDialog(note) {
   dialogReference.afterClosed().subscribe(result => {
     console.log("dialog closed with out any change");
   });
+}
+
+reminder(datetime)
+{
+  console.log(datetime);
+  this.noteService.createreminder(datetime,this.note.noteId).subscribe((result:any)=>{
+    this.note.reminderDate=result['data.reminde'];
+  })
 }
 
 

@@ -42,7 +42,8 @@ import {MatChipsModule} from '@angular/material/chips';
 import { AmazingTimePickerModule } from 'amazing-time-picker';
 import { LabelPipe } from './pipes/pipes/label.pipe';
 import { CollaboratorComponent } from './components/collaborator/collaborator.component';
-
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+// @import "~ng-pick-datetime/assets/style/picker.min.css";
 
 @NgModule({
   declarations: [
@@ -90,6 +91,8 @@ import { CollaboratorComponent } from './components/collaborator/collaborator.co
     MatListModule,
     MatChipsModule,
     AmazingTimePickerModule,
+    OwlDateTimeModule, 
+    OwlNativeDateTimeModule
     
 
   ],

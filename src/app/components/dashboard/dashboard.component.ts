@@ -102,4 +102,8 @@ export class DashboardComponent implements OnInit {
       console.log("dialog closed");
     });
   }
+
+  getNotes(label){
+    this.router.navigate(['dashboard/displaynote'],{queryParams:{ note: 'label', value: label.labelId }});
+  }
 }

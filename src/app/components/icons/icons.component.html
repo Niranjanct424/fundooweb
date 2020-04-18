@@ -1,10 +1,18 @@
 
 <div class="note-icon">
-  <button mat-icon-button >
-      <!-- <mat-icon matTooltip="Remind me">notifications_none</mat-icon> -->
-      <mat-icon>add_alert</mat-icon>
+ 
+
+  <button mat-icon-button [matMenuTriggerFor]="datetime">
+    <mat-icon matTooltip="Remind me" >notifications_none</mat-icon>
   </button>
-  <button mat-icon-button (click)="collabrator()">
+  <mat-menu #datetime="matMenu">
+    <input [owlDateTimeFilter]="myFilter" #ImpDate [owlDateTimeTrigger]="dt" [owlDateTime]="dt" placeholder="Date-Time">
+    <owl-date-time #dt></owl-date-time>
+    <button mat-icon-button color="primary" (click)="reminder(ImpDate.value)">Save</button>
+  </mat-menu>
+  <owl-date-time #dt1></owl-date-time>
+
+  <button mat-icon-button (click)="addCollaborator(note)">
       <mat-icon matTooltip="Add Collobrate">person_add</mat-icon>
   </button>
   <button mat-icon-button [matMenuTriggerFor]="menu1">

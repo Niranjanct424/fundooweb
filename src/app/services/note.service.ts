@@ -138,30 +138,30 @@ updateNote(userId:number , note:any)
 
 // start
 
-public addRemainderToNote(noteId: number, time:string) {
-  console.log("service reached with id : " + noteId);
-  console.log(
-    this.noteApiUrl +
-      "/" +
-      noteId +
-      `/remainder/add?time=+${time}`
-  );
-  return this.httpService
-    .put(
-      this.noteApiUrl +
-      "/" +
-      noteId +
-      `/remainder/add?time=+${time}`,
-      {},
-      this.httpOptions
-    )
-    .pipe(
-      tap(() => {
-        this.subject.next();
-      })
-    );
+// public addRemainderToNote(noteId: number, time:string) {
+//   console.log("service reached with id : " + noteId);
+//   console.log(
+//     this.noteApiUrl +
+//       "/" +
+//       noteId +
+//       `/remainder/add?time=+${time}`
+//   );
+//   return this.httpService
+//     .put(
+//       this.noteApiUrl +
+//       "/" +
+//       noteId +
+//       `/remainder/add?time=+${time}`,
+//       {},
+//       this.httpOptions
+//     )
+//     .pipe(
+//       tap(() => {
+//         this.subject.next();
+//       })
+//     );
     
-}
+// }
 
     setView(data:any)
     {
@@ -172,7 +172,14 @@ public addRemainderToNote(noteId: number, time:string) {
       return this.view.asObservable();
     }
 
-
+    baseUrl="http://localhost:8080/";
+    createreminder(remind : string,noteId : number)
+    {
+      return this.httpService.put("http://localhost:8080/remindme/"+`${noteId}`,remind,this.httpOptions)
+      .pipe(tap(()=>{
+      this.subject.next();
+      }));
+    }
 
 
 

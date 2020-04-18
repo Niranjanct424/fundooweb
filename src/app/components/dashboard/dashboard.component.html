@@ -101,7 +101,7 @@
         <span ><h3 class="label">LABELS</h3></span>
         <div>
           <div *ngFor="let label of labelsList">
-            <button mat-button id="sidenav-button" >
+            <button mat-button id="sidenav-button" (click)="getNotes(label)">
               <mat-icon style="margin-right: 40px;">label_outline</mat-icon>
               {{ label.labelName }}
             </button>
