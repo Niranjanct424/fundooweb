@@ -27,7 +27,7 @@ export class NoteComponent implements OnInit {
     private matSnackBar: MatSnackBar,
     private _router: Router,
     private dialog: MatDialog,
-    private _labelService: LabelService,
+    private labelService: LabelService,
     ) { }
 
   ngOnInit()
@@ -108,6 +108,14 @@ deletePermanently(){
   );
 }
 
+remove(label:any){
+  this.labelService.removeLabel(label.labelId , this.note.noteId).subscribe(
+    (response :any) => {
+      console.log("response : ", response);
+      this.matSnackBar.open(response['message'], "Ok", { duration: 4000})
+    }
+  );
+}
 
  
 }

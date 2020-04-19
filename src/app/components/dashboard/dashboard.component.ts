@@ -103,7 +103,9 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  getNotes(label){
+  getNotes(label)
+  {
+    console.log("notes of this label are");
     this.router.navigate(['dashboard/displaynote'],{queryParams:{ note: 'label', value: label.labelId }});
   }
 }

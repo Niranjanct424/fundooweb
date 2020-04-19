@@ -37,7 +37,7 @@
               <div  class="matchip" style="width: 100%;">
                 <mat-chip *ngFor="let label of labelsList">
                     {{label.labelName}}
-                  <mat-icon matChipRemove >cancel</mat-icon>
+                    <mat-icon matChipRemove (click)="remove(label)" matTooltip="remove">cancel</mat-icon>
                   </mat-chip>
               </div>
             </mat-chip-list>

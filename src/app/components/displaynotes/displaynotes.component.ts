@@ -3,6 +3,7 @@ import { Note } from 'src/app/models/note.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router , ActivatedRoute } from '@angular/router';
 import { NoteService } from 'src/app/services/note.service';
+import { LabelService } from 'src/app/services/label.service';
 
 
 @Component({
@@ -20,16 +21,24 @@ export class DisplaynotesComponent implements OnInit {
   notes = new Array<Note>();
   pinned = new Array<Note>();
   searchNotes: any;
+  labelId:number;
   view:any;
 
   constructor(    private route: Router,
     private matSnackBar: MatSnackBar,
     private noteService:NoteService ,
-     private router:ActivatedRoute) { }
+     private router:ActivatedRoute,
+     private labelService:LabelService) { }
 
    private param:any;
 
-  ngOnInit() {
+  ngOnInit() 
+  {
+    this.noteService.autoRefresh.subscribe(() => {
+      this.getOtherNotes();
+      this.getPinnedNotes();
+    });
+
     this.router.queryParams.subscribe(params=>{this.param=params['note'];
     if (this.param == "archive") 
     {
@@ -40,6 +49,25 @@ export class DisplaynotesComponent implements OnInit {
     {
       this.getTrashedNotes();
     }
+    // else if(this.param == "rem")
+    // {
+    //   this.reminderNotes();
+    // }
+//     else if(this.param == "view")
+//     {
+// this.view = params['view'];
+// console.log("view type:",this.view);
+// // this.getOtherNotes();
+// this.getPinnedNotes();
+//     }
+    else if(this.param == "label" )
+    {
+      this.pinnedNotes = false;
+  // 
+console.log("param labelId:",params['value']);
+this.labelId = params['value'];
+this.getLabelNotes();
+    }
     else
     {
      this.getOtherNotes();
@@ -47,8 +75,11 @@ export class DisplaynotesComponent implements OnInit {
      this.getView();
      
     }
+    
+    
     });
     this.getSearchNotes();
+    
   }
 
   getOtherNotes(){
@@ -131,9 +162,18 @@ export class DisplaynotesComponent implements OnInit {
       this.noteService.getView().subscribe(
       (response:any)=>{
       this.view=response.view;
-         });
-  
+         });  
    }
+   getLabelNotes(){
+    this.labelService.getNotesByLabel(this.labelId).subscribe(
+      (response: any) => {
+        console.log("getnotesby labelID response", response);
+      
+        this.notes = response['object'];
+          
+      }
+    )
+  }
 
 }
 

@@ -13,12 +13,13 @@ import { tap } from 'rxjs/operators';
 export class LabelService {
 
 
-  private labelUrl = environment.labelApiUrl;
-  private createLabelUrl = environment.createLabelUrl;
+private labelUrl = environment.labelApiUrl;
+private createLabelUrl = environment.createLabelUrl;
 private deleteLabelUrl = environment.deleteLabelUrl;
 private updateLabelUrl = environment.updateLabelUrl;
 private getLabelUrl = environment.getLabelsUrl;
 private addLabelUrl = environment.addLabelUrl;
+
 
   constructor(private httpService:HttpService , private httpClient:HttpClient) { }
 
@@ -54,5 +55,10 @@ private addLabelUrl = environment.addLabelUrl;
 
   removeLabel(labelId:number , noteId:number){
     return this.httpService.post(`${this.labelUrl}${environment.removeLabelUrl}?labelId=${labelId}&noteId=${noteId}`,"" , this.httpOptions);
+  }
+
+  getNotesByLabel(labelId:number)
+  {
+    return this.httpService.get(this.labelUrl+environment.getNotesByLableUrl+labelId,this.httpOptions);
   }
 }
