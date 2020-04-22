@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Note } from 'src/app/models/note.model';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar,MatDialog } from '@angular/material';
 import { Router , ActivatedRoute } from '@angular/router';
 import { NoteService } from 'src/app/services/note.service';
 import { LabelService } from 'src/app/services/label.service';
+import { ReminderComponent } from '../reminder/reminder.component';
 
 
 @Component({
@@ -27,6 +28,7 @@ export class DisplaynotesComponent implements OnInit {
   constructor(    private route: Router,
     private matSnackBar: MatSnackBar,
     private noteService:NoteService ,
+    private matDialog: MatDialog,
      private router:ActivatedRoute,
      private labelService:LabelService) { }
 
@@ -49,6 +51,10 @@ export class DisplaynotesComponent implements OnInit {
     {
       this.getTrashedNotes();
     }
+    else if(this.param == "rem")
+    {
+      this.reminderNotes();
+    }
     // else if(this.param == "rem")
     // {
     //   this.reminderNotes();
@@ -62,7 +68,7 @@ export class DisplaynotesComponent implements OnInit {
 //     }
     else if(this.param == "label" )
     {
-      this.pinnedNotes = false;
+      // this.pinnedNotes = false;
   // 
 console.log("param labelId:",params['value']);
 this.labelId = params['value'];
@@ -174,6 +180,25 @@ this.getLabelNotes();
       }
     )
   }
+  reminderNotes()
+  {
+    this.noteService.getAllNotes().subscribe(
+
+      (response: any) => {
+        console.log("response", response);
+        console.log("notes:",response.object);
+        this.others = response['object'];
+         this.others.filter(note=>note.reminderDate != null).map(note=>this.notes.push(note));
+      },  
+      (error:any)=> {
+        this.matSnackBar.open(error.error.message, "failed", {duration:5000})
+      }
+    );
+  }
+
+
+    
+
 
 }
 

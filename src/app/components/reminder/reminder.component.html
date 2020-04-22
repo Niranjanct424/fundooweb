@@ -1,0 +1,32 @@
+<div>
+    <div>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Choose a date" [formControl]="date" value="matDatepicker" #calender>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <!-- <input placeholder="Date Time:" [(ngModel)]="dateTime" [owlDateTimeTrigger]="dt" [owlDateTime]="dt">
+      <owl-date-time #dt [pickerType]="'calendar'" ></owl-date-time> -->
+    </mat-form-field>
+</div>
+<div>
+    <mat-form-field >
+        
+      <mat-select placeholder="Time">
+        <mat-option *ngFor="let time of times" [value]="time.value" (click)="setTime(time.value)">
+          {{time.viewValue}}
+        </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+<div>
+    <mat-form-field>
+      <mat-select placeholder="Repeat">
+        <mat-option *ngFor="let repeat of repeatReminder" [value]="repeat.value">
+          {{repeat.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div>
+  <button style="margin-left: 65%" mat-button (click)="saveReminder(calender.value)">Save</button>
+</div>

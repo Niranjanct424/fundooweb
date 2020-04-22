@@ -9,6 +9,8 @@ import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { ReminderDto } from 'src/app/models/reminder-dto.model';
 import { CollaboratorComponent } from '../collaborator/collaborator.component';
+import { ReminderComponent } from '../reminder/reminder.component';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-icons',
@@ -20,20 +22,26 @@ export class IconsComponent implements OnInit {
   @Input() note: Note;
   noteId: number;
   // dialog: any;
+  
+  reminderDate:string;
+  datePipeString : string;
+  tommorrowDate:string;
+  setReminderDate:string;
 
   constructor(private noteService:NoteService,
     private matSnackBar: MatSnackBar,private matDialog: MatDialog,
-    private _amazingTimePicker: AmazingTimePickerService,
     private _router: Router,
-    // private atp: AmazingTimePickerService,
-    ) { }
+    private datePipe: DatePipe
+    ) 
+    {
+      this.datePipeString = datePipe.transform(Date.now(),'yyyy-MM-dd');
+      console.log("date today:",this.datePipeString);
+    }
 
-// start reminderDate
     ngOnInit() {}
     // selectedTime: string;
     // // reminderDate: string;
     // today: any;
-
 
 
   colorsList = [
@@ -114,13 +122,29 @@ addLabelToNoteDialog(note) {
   });
 }
 
-reminder(datetime)
-{
-  console.log(datetime);
-  this.noteService.createreminder(datetime,this.note.noteId).subscribe((result:any)=>{
-    this.note.reminderDate=result['data.reminde'];
-  })
-}
+datePicker(note) {
+  const dialogRef = this.matDialog.open(ReminderComponent, {
+    data : {noteId:note.noteId},
+    panelClass: 'custom-dialog-container'
+  });
+  dialogRef.afterClosed().subscribe(result => {
+    console.log("collaborator closed");
+  });
+  
+  }
+  
+
+  addReminder(noteId:number)
+  {
+  this.noteService.addReminder(noteId , this.reminderDate).subscribe(
+    response => {
+      console.log("response : ", response);
+      this.matSnackBar.open(response['message'], "ok", { duration: 4000
+      });
+    }
+  );
+  }
+
 
 addCollaborator(note)
 {
@@ -130,6 +154,74 @@ addCollaborator(note)
     dialogRef.afterClosed().subscribe(result => {
     console.log("collaborator closed");
     });
+}
+
+today(note)
+{
+  let time:string="9:00";
+this.reminderDate = this.datePipeString+","+time+":00";
+let newDate = new Date(this.reminderDate);
+console.log("Formated date:",newDate);
+let reminder={
+  reminderDate:newDate
+}
+this.noteService.addReminder(note.noteId , reminder).subscribe(
+  response => {
+    console.log("response : ", response);
+    this.matSnackBar.open(response['message'], "ok", { duration: 4000 });
+  }
+);
+
+}
+
+tommorrow(note)
+{
+  let time:string="9:00";
+  const cal = new Date();
+  cal.setDate(cal.getDate() + 1);
+  this.reminderDate =cal.getMonth() + 1 + '/' + cal.getDate() + '/' + cal.getFullYear();
+  this.tommorrowDate = this.datePipe.transform(this.reminderDate,'yyyy-MM-dd');
+  console.log("tommorrow date:",this.tommorrowDate);
+  this.setReminderDate = this.tommorrowDate+","+time+":00";
+
+
+  // this.reminderDate = cal.getFullYear() + ':' + cal.getMonth() + ':' + cal.getDate();
+  console.log("set date:",this.setReminderDate);
+  let newDate = new Date(this.setReminderDate);
+console.log("Formated date:",newDate);
+let reminder={
+  reminderDate:newDate
+}
+this.noteService.addReminder(note.noteId , reminder).subscribe(
+  response => {
+    console.log("response : ", response);
+    this.matSnackBar.open(response['message'], "ok", { duration: 4000 });
+  }
+);
+}
+
+nextWeek(note)
+{
+  let time:string="9:00";
+  const cal = new Date();
+  cal.setDate(cal.getDate() + ((1 + 7 - cal.getDay()) % 7)+2);  
+  
+  this.reminderDate = cal.getMonth() + 1 + '/' + cal.getDate() + '/' + cal.getFullYear();
+  console.log("next week monday:",this.reminderDate);
+
+  this.setReminderDate = this.reminderDate+","+time+":00";
+  console.log("set date:",this.setReminderDate);
+  let newDate = new Date(this.setReminderDate);
+console.log("Formated date:",newDate);
+let reminder={
+  reminderDate:newDate
+}
+this.noteService.addReminder(note.noteId , reminder).subscribe(
+  response => {
+    console.log("response : ", response);
+    this.matSnackBar.open(response['message'], "ok", { duration: 4000 });
+  }
+);
 }
 
 

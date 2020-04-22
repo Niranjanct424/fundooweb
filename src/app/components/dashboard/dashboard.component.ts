@@ -17,6 +17,13 @@ export class DashboardComponent implements OnInit {
   title: String;
   value= '';
   labelsList: Label[];
+
+
+
+  profilePicUser: any = "../assets/images/profile.jpg";
+  // firstName: string = localStorage.getItem("firstName");
+  firstName: string = "Niranjan";
+  
   
   constructor(private router:Router , private noteService:NoteService,private labelService: LabelService,
     private matDialog: MatDialog) {
@@ -108,4 +115,10 @@ export class DashboardComponent implements OnInit {
     console.log("notes of this label are");
     this.router.navigate(['dashboard/displaynote'],{queryParams:{ note: 'label', value: label.labelId }});
   }
+
+  reminder()
+  {
+    this.router.navigate(['dashboard/displaynote'],{queryParams:{note:'rem'}});
+  }
+
 }

@@ -136,33 +136,6 @@ updateNote(userId:number , note:any)
 }
 
 
-// start
-
-// public addRemainderToNote(noteId: number, time:string) {
-//   console.log("service reached with id : " + noteId);
-//   console.log(
-//     this.noteApiUrl +
-//       "/" +
-//       noteId +
-//       `/remainder/add?time=+${time}`
-//   );
-//   return this.httpService
-//     .put(
-//       this.noteApiUrl +
-//       "/" +
-//       noteId +
-//       `/remainder/add?time=+${time}`,
-//       {},
-//       this.httpOptions
-//     )
-//     .pipe(
-//       tap(() => {
-//         this.subject.next();
-//       })
-//     );
-    
-// }
-
     setView(data:any)
     {
       this.view.next({view:data});
@@ -172,18 +145,17 @@ updateNote(userId:number , note:any)
       return this.view.asObservable();
     }
 
-    baseUrl="http://localhost:8080/";
-    createreminder(remind : string,noteId : number)
-    {
-      return this.httpService.put("http://localhost:8080/remindme/"+`${noteId}`,remind,this.httpOptions)
-      .pipe(tap(()=>{
-      this.subject.next();
-      }));
-    }
+  
 
-
-
-
-
+  addReminder(noteId:number , reminder:any)
+  {
+     console.log("noteid"+noteId+" reminder "+reminder);
+     
+      return this.httpService.put(`${this.noteApiUrl}${environment.addReminderUrl}?noteId=${noteId}`,reminder , this.httpOptions);
+  }
+  deleteReminder(noteId:number)
+  {
+      return this.httpService.put(`${this.noteApiUrl}${environment.removeReminderUrl}?noteId=${noteId}`, " " , this.httpOptions);
+  }
 
 }

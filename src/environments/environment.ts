@@ -28,6 +28,8 @@ export const environment = {
   searchNoteUrl:'/getNotesByTitle',
   restoreTrashrdNoteUrl:'/restore/',
   updateNoteUrl:'/update/',
+  addReminderUrl:'/noteReminder',
+  removeReminderUrl:'/deleteReminder',
   
   // label note
   labelApiUrl:'http://localhost:8080/labels',

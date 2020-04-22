@@ -10,7 +10,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
@@ -37,13 +37,19 @@ import { UpdatenoteComponent } from './components/updatenote/updatenote.componen
 import { AddlabelComponent } from './components/addlabel/addlabel.component';
 import { EditlabelComponent } from './components/editlabel/editlabel.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatListModule} from '@angular/material/list';
-import {MatChipsModule} from '@angular/material/chips';
 import { AmazingTimePickerModule } from 'amazing-time-picker';
 import { LabelPipe } from './pipes/pipes/label.pipe';
 import { CollaboratorComponent } from './components/collaborator/collaborator.component';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
-// @import "~ng-pick-datetime/assets/style/picker.min.css";
+import { ReminderComponent } from './components/reminder/reminder.component';
+import { MatNativeDateModule} from '@angular/material';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatListModule,MatChipsModule} from '@angular/material';
+import { DatePipe } from '@angular/common';
+// import { MomentModule } from 'ngx-moment';
+// import {moment} from 'moment/moment';
+
 
 @NgModule({
   declarations: [
@@ -64,6 +70,7 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
     EditlabelComponent,
     LabelPipe,
     CollaboratorComponent,
+    ReminderComponent,
 
     
   ],
@@ -92,18 +99,26 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
     MatChipsModule,
     AmazingTimePickerModule,
     OwlDateTimeModule, 
-    OwlNativeDateTimeModule
+    OwlNativeDateTimeModule,
+    MatDatepickerModule,
+    MatSelectModule,
+    MatNativeDateModule,
+    
+    
     
 
   ],
   entryComponents: [
+    AddlabelComponent,
     EditlabelComponent,
-    CollaboratorComponent
+    CollaboratorComponent,
+    ReminderComponent
   ],
   
 
 
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

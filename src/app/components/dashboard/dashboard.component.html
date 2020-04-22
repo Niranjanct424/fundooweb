@@ -47,7 +47,7 @@
 
      
 
-      <div class="signout">
+      <!-- <div class="signout">
         <button  mat-icon-button  [matMenuTriggerFor]="beforeMenu">
             <mat-icon matTooltip="Fundoo Account">account_circle</mat-icon>
         </button>
@@ -59,7 +59,6 @@
                 </div>
                 <div class="header">
                     <mat-card-header>
-                      <!-- <mat-card-title style="margin-left: 55px;">User</mat-card-title> -->
                       <mat-card-subtitle>{{getEmail()}}</mat-card-subtitle>
                     </mat-card-header>
                 </div>
@@ -69,7 +68,58 @@
                 <button (click)="onClick()" mat-stroked-button color="primary" >Signout</button>
               </div>
     </mat-menu>
+</div> -->
+<!-- start -->
+<div class="signout">
+<div>
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <img mat-card-avatar src="{{ profilePicUser }}" class="profile1" />
+  </button>
+   <!-- menu for sign out -->
+   <mat-menu #menu="matMenu">
+    <div
+    fxLayout="row"
+    fxFlex="100"
+    fxLayoutAlign="space-between center"
+    >
+    <mat-card style="overflow: hidden">
+      <mat-card-content>
+        <div>
+          <img
+                    class="topic-avatar"
+                    mat-card-avatar
+                    src="{{ profilePicUser }}"
+          />
+          <label class="btn-upload">
+            <input type="file" name="fileupload" />
+            <button class="btn">Change</button>
+          </label>
+        </div>
+        <div
+        class="firstName"
+        style="margin-top: 15px;
+        text-align: center;"
+        >
+        {{ firstName }}
+        </div>
+        <div>
+          {{getEmail()}}
+        </div>
+      </mat-card-content>
+      <mat-card-actions align="center">
+        <button mat-raised-button (click)="onClick()">
+          Sign out
+        </button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-divider></mat-divider>
+    </div>
+   </mat-menu>
 </div>
+</div>
+<!-- end -->
+
+
 
     </mat-toolbar-row>
   
@@ -88,7 +138,7 @@
                  <span class= "icon-label">Notes</span>
                  </button>
 
-                 <button mat-button class="navbutton">
+                 <button mat-button class="navbutton" (click)="reminder()">
                   <mat-icon class ="sidenav-icon">notifications_none</mat-icon>
                     <span class="icon-label">Reminders</span>
                    </button>

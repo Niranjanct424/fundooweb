@@ -12,7 +12,7 @@
         <textarea matInput type="text" placeholder="Title" [formControl]="title"></textarea>
         <textarea matInput type="text" placeholder="Take a note" [formControl]="description"></textarea>
         <div class="icons" style="display:flex;flex-direction: row;align-items: center;">
-            <mat-icon matTooltip="Remind me">notifications_none</mat-icon>
+            <mat-icon matTooltip="Remind me" [matMenuTriggerFor]="reminder">notifications_none</mat-icon>
             <mat-icon matTooltip="Collaborator">person_add</mat-icon>
             <mat-icon matTooltip="Change color">color_lens</mat-icon>
            
@@ -27,6 +27,31 @@
             <button mat-button (click)="onSubmit()" class="close">Close</button> 
     </div>
 </div>
+
+<mat-menu #reminder="matMenu">
+    <div style="margin: 20px;">
+      Reminder:
+    </div>
+
+    <button class="matmenu" mat-menu-item (click)="today()">Later today
+      <span style="margin-left: 100px;">08:00 PM</span>
+    </button>
+
+    <button class="matmenu" mat-menu-item (click)="tommorrow()">Tomorrow
+      <span style="margin-left: 110px;">08:00 AM</span>
+    </button>
+
+    <button class="matmenu" mat-menu-item (click)="nextWeek()">Next week
+      <span style="margin-left: 75px;">Mon, 08:00 AM</span>
+    </button>
+
+    <button class="matmenu" mat-menu-item (click)="datePicker()">
+      <mat-icon style="font-size: 18px; margin: 1px;">access_time</mat-icon>
+      <span>Pick date & time</span>
+    </button>
+    
+    <button mat-menu-item><mat-icon>place</mat-icon>Pick place</button>
+  </mat-menu>
    </mat-card>
    <!-- <div class="display-all-notes">
     <app-displaynotes></app-displaynotes>
